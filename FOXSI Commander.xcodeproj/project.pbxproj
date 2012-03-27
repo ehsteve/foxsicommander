@@ -13,6 +13,7 @@
 		86BCE2A0151CAEF70066B9B5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE29E151CAEF70066B9B5 /* Credits.rtf */; };
 		86BCE2A3151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */; };
 		86BCE2A6151CAEF70066B9B5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE2A4151CAEF70066B9B5 /* MainMenu.xib */; };
+		86BCE2AE151CB61B0066B9B5 /* Commander.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE2AD151CB61B0066B9B5 /* Commander.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,14 +22,16 @@
 		86BCE292151CAEF70066B9B5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		86BCE293151CAEF70066B9B5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		86BCE294151CAEF70066B9B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		86BCE297151CAEF70066B9B5 /* FOXSI Commander-Info.plist */ = {isa = PBXFileReference; path = "FOXSI Commander-Info.plist"; sourceTree = "<group>"; };
+		86BCE297151CAEF70066B9B5 /* FOXSI Commander-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FOXSI Commander-Info.plist"; sourceTree = "<group>"; };
 		86BCE299151CAEF70066B9B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		86BCE29B151CAEF70066B9B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		86BCE29D151CAEF70066B9B5 /* FOXSI Commander-Prefix.pch */ = {isa = PBXFileReference; path = "FOXSI Commander-Prefix.pch"; sourceTree = "<group>"; };
+		86BCE29D151CAEF70066B9B5 /* FOXSI Commander-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FOXSI Commander-Prefix.pch"; sourceTree = "<group>"; };
 		86BCE29F151CAEF70066B9B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		86BCE2A1151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.h */ = {isa = PBXFileReference; path = FOXSI_CommanderAppDelegate.h; sourceTree = "<group>"; };
+		86BCE2A1151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FOXSI_CommanderAppDelegate.h; sourceTree = "<group>"; };
 		86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FOXSI_CommanderAppDelegate.m; sourceTree = "<group>"; };
 		86BCE2A5151CAEF70066B9B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		86BCE2AC151CB61B0066B9B5 /* Commander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commander.h; sourceTree = "<group>"; };
+		86BCE2AD151CB61B0066B9B5 /* Commander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commander.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 			children = (
 				86BCE2A1151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.h */,
 				86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */,
+				86BCE2AC151CB61B0066B9B5 /* Commander.h */,
+				86BCE2AD151CB61B0066B9B5 /* Commander.m */,
 				86BCE2A4151CAEF70066B9B5 /* MainMenu.xib */,
 				86BCE296151CAEF70066B9B5 /* Supporting Files */,
 			);
@@ -167,6 +172,7 @@
 			files = (
 				86BCE29C151CAEF70066B9B5 /* main.m in Sources */,
 				86BCE2A3151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m in Sources */,
+				86BCE2AE151CB61B0066B9B5 /* Commander.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
