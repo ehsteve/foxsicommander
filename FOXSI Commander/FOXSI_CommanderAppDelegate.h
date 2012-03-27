@@ -50,6 +50,5 @@
 - (IBAction)strip_stepper_action:(id)sender;
 - (IBAction)threshold_stepper_action:(id)sender;
 - (void)update_command_display:(id)sender;
-- (void)update_command_buffer:(id)sender;
 
 @end

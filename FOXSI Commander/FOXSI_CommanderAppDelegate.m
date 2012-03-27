@@ -53,8 +53,21 @@ extern unsigned char cmd[5];
 }
 
 - (IBAction)send_command:(id)sender {
-    self.commander.commandCount++;
-    [self update_command_buffer:nil];
+    //self.commander.commandCount++;
+    //[self update_command_buffer:nil];
+    NSString *command_history_buffer;
+    NSRange myrange;
+    NSString *command_string_line = [NSString stringWithFormat:@" Sent\n"];
+    
+    command_history_buffer = [command_history_display string];
+    command_history_buffer = [[command_history_buffer substringToIndex:[command_history_buffer length]-1] stringByAppendingString:command_string_line];
+    
+    // replace the text with new info
+    [command_history_display setString:command_history_buffer];
+    
+    // scroll the text down
+    myrange.length = [command_history_buffer length];
+    [command_history_display scrollRangeToVisible:myrange]; 
 }
 
 - (IBAction)strip_disable_push:(id)sender{
@@ -76,6 +89,8 @@ extern unsigned char cmd[5];
 }
 
 - (IBAction)clock_reset_push:(id)sender {
+    [self.commander create_cmd_clock:0:0];
+    [self update_command_display:nil];
 }
 
 - (IBAction)strip_stepper_action:(id)sender {
@@ -97,15 +112,14 @@ extern unsigned char cmd[5];
 }
 
 - (void)update_command_display:(id)sender {
-    NSString *command_string = [NSString stringWithFormat:@"%02x %02x %02x %02x",cmd[0],cmd[1],cmd[2],cmd[3]];
-    [self.command_display setStringValue:command_string];
-}
-
-- (void)update_command_buffer:(id)sender {
+    //NSString *command_string = [NSString stringWithFormat:@"%02x %02x %02x %02x",cmd[0],cmd[1],cmd[2],cmd[3]];
+    
+    //[self.command_display setStringValue:command_string];
+    
     NSString *command_history_buffer;
     NSRange myrange;
-    NSString *command_string_line = [NSString stringWithFormat:@"%02i: %02x %02x %02x %02x\n",self.commander.commandCount, cmd[0],cmd[1],cmd[2],cmd[3]];;
-        
+    NSString *command_string_line = [NSString stringWithFormat:@"%02i: %@ - %02x %02x %02x %02x\n",self.commander.commandCount, self.commander.command_readable, cmd[0],cmd[1],cmd[2],cmd[3]];
+    
     command_history_buffer = [command_history_display string];
     command_history_buffer = [command_history_buffer stringByAppendingString:command_string_line];
     
@@ -115,7 +129,8 @@ extern unsigned char cmd[5];
     // scroll the text down
     myrange.length = [command_history_buffer length];
     [command_history_display scrollRangeToVisible:myrange]; 
-}
 
+    
+}
 
 @end

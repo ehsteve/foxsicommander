@@ -10,19 +10,22 @@
 #include <sys/stat.h>
 #include <termios.h>
 
-unsigned char cmd[20];
+unsigned char cmd[40];
 
 @interface Commander()
+
 // define private methods here
 -(void)test:(int) hvvalue;
 -(int)command_initialize_serial;
+
 @end
 
 @implementation Commander
 
 @synthesize volume = _volume;
 @synthesize commandCount = _commandCount;
-@synthesize command_list = _command_list;
+@synthesize command_readable = _command_readable;
+@synthesize command_length = _command_length;
 
 - (id)init
 {
@@ -53,7 +56,9 @@ unsigned char cmd[20];
 	cmd[3] ^= cmd[1];
 	cmd[3] ^= cmd[2]; 
     
-    [command_list addObject:[NSNumber numberWithUnsignedChar:0xf0]];
+    self.command_readable = [NSString stringWithFormat:@"HV to %i", hvvalue];
+    self.commandCount++;
+    self.command_length = 4;
 }
 
 -(void)create_cmd_attenuator:(bool) state
@@ -70,6 +75,10 @@ unsigned char cmd[20];
 	cmd[3] ^= cmd[0];
 	cmd[3] ^= cmd[1];
 	cmd[3] ^= cmd[2];
+    
+    self.command_readable = [NSString stringWithFormat:@"Atten strobe %i", state];
+    self.commandCount++;
+    self.command_length = 4;
 }
 
 -(void)create_cmd_stripoff:(NSInteger) detector_number: (NSInteger) strip_number
@@ -96,6 +105,10 @@ unsigned char cmd[20];
     cmd[3] ^= cmd[0];
     cmd[3] ^= cmd[1];
     cmd[3] ^= cmd[2];
+    
+    self.command_readable = [NSString stringWithFormat:@"Det %i strip %i off", detector_number, strip_number];
+    self.command_length = 4;
+    self.commandCount++;
 }
 
 -(void) create_cmd_setthreshold:(NSInteger) detector_number: (NSInteger) threshhold
@@ -127,79 +140,86 @@ unsigned char cmd[20];
         cmd[3] ^= cmd[1];
         cmd[3] ^= cmd[2];
     }
+    
+    self.command_readable = [NSString stringWithFormat:@"Det %i threshold to %i", detector_number, threshhold];
+    self.command_length = 4;
+    self.commandCount++;
 }
 
 -(void)create_cmd_clock:(long long) clock_lo: (long long) clock_hi
 {                
-        cmd[0] = 0xf8;
-        cmd[1] = 0x0;
-        cmd[2] = (unsigned char) (clock_lo & 0xff);
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-        NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
-        //[self send_command:nil];
-        
-        cmd[0] = 0xf8;
-        cmd[1] = 0x01;
-        cmd[2] = (unsigned char) ( (clock_lo >> 8) & 0xff);
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-        NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
-        //[self send_command:nil];
+    cmd[0] = 0xf8;
+    cmd[1] = 0x0;
+    cmd[2] = (unsigned char) (clock_lo & 0xff);
+    cmd[3] = 0x0;
+    cmd[3] ^= cmd[0];
+    cmd[3] ^= cmd[1];
+    cmd[3] ^= cmd[2];
+    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
     
-        cmd[0] = 0xf8;
-        cmd[1] = 0x02;
-        cmd[2] = (unsigned char) ( (clock_lo >> 16) & 0xff);
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-        NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
-       // if (fsercmd > 0){write(fsercmd,&cmd,4);}
-        
-        cmd[0] = 0xf8;
-        cmd[1] = 0x03;
-        cmd[2] = (unsigned char) ( (clock_lo >> 24) & 0xff);
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-        NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
-       // if (fsercmd > 0){write(fsercmd,&cmd,4);}
-        
-        cmd[0] = 0xf8;
-        cmd[1] = 0x07;
-        cmd[2] = 0x0;
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-        NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
-        //if (fsercmd > 0){write(fsercmd,&cmd,4);}
-        
-        cmd[0] = 0xf8;
-        cmd[1] = 0x04;
-        cmd[2] = (unsigned char) (clock_hi &0xff);
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-        NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
-       // if (fsercmd > 0){write(fsercmd,&cmd,4);}
-        
-        cmd[0] = 0xf8;
-        cmd[1] = 0x05;
-        cmd[2] = (unsigned char) ( (clock_hi >> 8) & 0xff);
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-         NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
-        //if (fsercmd > 0){write(fsercmd,&cmd,4);}        
+    cmd[4] = 0xf8;
+    cmd[5] = 0x01;
+    cmd[6] = (unsigned char) ( (clock_lo >> 8) & 0xff);
+    cmd[7] = 0x0;
+    cmd[8] ^= cmd[0];
+    cmd[8] ^= cmd[1];
+    cmd[8] ^= cmd[2];
+    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
+    //[self send_command:nil];
+    
+    cmd[9] = 0xf8;
+    cmd[10] = 0x02;
+    cmd[11] = (unsigned char) ( (clock_lo >> 16) & 0xff);
+    cmd[12] = 0x0;
+    cmd[13] ^= cmd[0];
+    cmd[13] ^= cmd[1];
+    cmd[13] ^= cmd[2];
+    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
+    // if (fsercmd > 0){write(fsercmd,&cmd,4);}
+    
+    cmd[14] = 0xf8;
+    cmd[15] = 0x03;
+    cmd[16] = (unsigned char) ( (clock_lo >> 24) & 0xff);
+    cmd[17] = 0x0;
+    cmd[18] ^= cmd[0];
+    cmd[18] ^= cmd[1];
+    cmd[18] ^= cmd[2];
+    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
+    // if (fsercmd > 0){write(fsercmd,&cmd,4);}
+    
+    cmd[19] = 0xf8;
+    cmd[20] = 0x07;
+    cmd[21] = 0x0;
+    cmd[22] = 0x0;
+    cmd[23] ^= cmd[0];
+    cmd[23] ^= cmd[1];
+    cmd[23] ^= cmd[2];
+    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
+    //if (fsercmd > 0){write(fsercmd,&cmd,4);}
+    
+    cmd[24] = 0xf8;
+    cmd[25] = 0x04;
+    cmd[26] = (unsigned char) (clock_hi &0xff);
+    cmd[27] = 0x0;
+    cmd[27] ^= cmd[0];
+    cmd[27] ^= cmd[1];
+    cmd[27] ^= cmd[2];
+    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
+    // if (fsercmd > 0){write(fsercmd,&cmd,4);}
+    
+    cmd[28] = 0xf8;
+    cmd[29] = 0x05;
+    cmd[30] = (unsigned char) ( (clock_hi >> 8) & 0xff);
+    cmd[31] = 0x0;
+    cmd[32] ^= cmd[0];
+    cmd[32] ^= cmd[1];
+    cmd[32] ^= cmd[2];
+    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
+    //if (fsercmd > 0){write(fsercmd,&cmd,4);} 
+    
+    self.command_readable = [NSString stringWithFormat:@"Clock to %i %i", clock_hi, clock_lo];
+    self.command_length = 32;
+    self.commandCount++;
 }
 
 -(void)send_command
@@ -207,7 +227,7 @@ unsigned char cmd[20];
     int fsercmd;
     
     fsercmd = [self command_initialize_serial];
-    if (fsercmd > 0){write(fsercmd, &cmd[0],4);}
+    if (fsercmd > 0){write(fsercmd, &cmd[0],self.command_length);}
     sleep(1);
 }
 
