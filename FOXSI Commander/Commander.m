@@ -42,28 +42,38 @@ unsigned char cmd[40];
     //private method
 }
 
--(void)create_cmd_hv:(int) hvvalue
+-(void)create_cmd_hv:(int) voltage
 {	
+    // schriste - output checked with sethv
+    
     // create the command
-    int high_voltage;
-    high_voltage = hvvalue*8;
+    int cmd_voltage;
+    // convert to command voltage
+    cmd_voltage = voltage*8;
     
-	cmd[0] = 0xf0;
-	cmd[1] = (unsigned char) ( (high_voltage >> 8) & 0xf);
-	cmd[2] = (unsigned char) (high_voltage &0xff);
-	cmd[3] = 0x0;
-	cmd[3] ^= cmd[0];
-	cmd[3] ^= cmd[1];
-	cmd[3] ^= cmd[2]; 
-    
-    self.command_readable = [NSString stringWithFormat:@"HV to %i", hvvalue];
-    self.commandCount++;
-    self.command_length = 4;
+    if (cmd_voltage < 4095) {
+        cmd[0] = 0xf0;
+        cmd[1] = (unsigned char) ( (cmd_voltage >> 8) & 0xf);
+        cmd[2] = (unsigned char) (cmd_voltage &0xff);
+        cmd[3] = 0x0;
+        cmd[3] ^= cmd[0];
+        cmd[3] ^= cmd[1];
+        cmd[3] ^= cmd[2]; 
+        
+        self.command_readable = [NSString stringWithFormat:@"HV to %i", voltage];
+        self.commandCount++;
+        self.command_length = 4;
+    } else {
+        NSLog(@" Voltage value, %d, greater than maximum 511 (cmd 4095).\n",(int) voltage);
+    }
 }
 
 -(void)create_cmd_attenuator:(bool) state
 {
     // create a command to enable the attenuator
+    //
+    // schriste - checked with attenuator0 and attenuator1
+
 	cmd[0] = 0xe8;
 	if (state == 0) {
 		cmd[1] = 0x00;
@@ -76,13 +86,15 @@ unsigned char cmd[40];
 	cmd[3] ^= cmd[1];
 	cmd[3] ^= cmd[2];
     
-    self.command_readable = [NSString stringWithFormat:@"Atten strobe %i", state];
+    self.command_readable = [NSString stringWithFormat:@"Attenuator strobe %i", state];
     self.commandCount++;
     self.command_length = 4;
 }
 
 -(void)create_cmd_stripoff:(NSInteger) detector_number: (NSInteger) strip_number
 {
+    // create command to turn a strip off
+    
     int stripvalue = (int) strip_number;
     int cmdvalue;
     
@@ -139,11 +151,12 @@ unsigned char cmd[40];
         cmd[3] ^= cmd[0];
         cmd[3] ^= cmd[1];
         cmd[3] ^= cmd[2];
+        
+        self.command_readable = [NSString stringWithFormat:@"Det %i threshold to %i", detector_number, threshhold];
+        self.command_length = 4;
+        self.commandCount++;
     }
     
-    self.command_readable = [NSString stringWithFormat:@"Det %i threshold to %i", detector_number, threshhold];
-    self.command_length = 4;
-    self.commandCount++;
 }
 
 -(void)create_cmd_clock:(long long) clock_lo: (long long) clock_hi
@@ -156,6 +169,12 @@ unsigned char cmd[40];
     cmd[3] ^= cmd[1];
     cmd[3] ^= cmd[2];
     NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
+    
+    self.command_readable = [NSString stringWithFormat:@"Clock_lo to %i %i", clock_hi, clock_lo];
+    self.command_length = 4;
+    self.commandCount++;
+    
+    //send_one_command();
     
     cmd[4] = 0xf8;
     cmd[5] = 0x01;
@@ -222,14 +241,15 @@ unsigned char cmd[40];
     self.commandCount++;
 }
 
--(void)send_command
-{
-    int fsercmd;
-    
-    fsercmd = [self command_initialize_serial];
-    if (fsercmd > 0){write(fsercmd, &cmd[0],self.command_length);}
-    sleep(1);
-}
+//-(void)send_one_command
+//{
+//    int fsercmd;
+//    
+//    fsercmd = [self command_initialize_serial];
+//    if (fsercmd > 0){write(fsercmd, &cmd[0],self.command_length);}
+//    sleep(1);
+//}
+
 
 -(int)command_initialize_serial
 {

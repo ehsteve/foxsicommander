@@ -21,6 +21,6 @@
 -(void) create_cmd_setthreshold:(NSInteger) detector_number: (NSInteger) threshhold;
 -(void)create_cmd_stripoff:(NSInteger) detector_number: (NSInteger) strip_number;
 -(void)create_cmd_clock:(long long) clock_lo: (long long) clock_hi;
--(void)send_command;
+//-(void)send_one_command:(void)
 
 @end

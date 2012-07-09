@@ -32,6 +32,9 @@
 @property (assign) IBOutlet NSTextField *threshold_chooser;
 @property (assign) IBOutlet NSStepperCell *strip_stepper;
 @property (assign) IBOutlet NSStepperCell *threshold_stepper;
+@property (assign) IBOutlet NSButton *send_button;
+@property (assign) IBOutlet NSSegmentedControl *system_arm_button;
+
 
 @property (assign) Commander *commander;
 
@@ -46,9 +49,12 @@
 - (IBAction)sync_strip_stepper:(id)sender;
 - (IBAction)sync_threshold_stepper:(id)sender;
 - (IBAction)clock_reset_push:(id)sender;
+- (IBAction)system_arm:(id)sender;
 
 - (IBAction)strip_stepper_action:(id)sender;
 - (IBAction)threshold_stepper_action:(id)sender;
-- (void)update_command_display:(id)sender;
+- (void) update_command_display:(id)sender;
+- (NSString *)create_command_string:(id)sender;
+- (void)update_text_display:(id)sender: (NSString *) text_to_display;
 
 @end

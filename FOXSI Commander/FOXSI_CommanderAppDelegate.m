@@ -22,6 +22,8 @@ extern unsigned char cmd[5];
 @synthesize threshold_chooser;
 @synthesize strip_stepper;
 @synthesize threshold_stepper;
+@synthesize send_button;
+@synthesize system_arm_button;
 
 @synthesize commander = _commander;
 
@@ -35,11 +37,8 @@ extern unsigned char cmd[5];
 - (IBAction)voltage_toX_push:(id)sender {
     int newVoltage = [voltage_input intValue];
     
-    if ((newVoltage < 210) && (newVoltage >= 0)){
-        [self.commander create_cmd_hv:newVoltage];
-    }
-    
-    [self update_command_display:nil];
+    [self.commander create_cmd_hv:newVoltage];
+    [self update_command_display:nil];        
 }
 
 - (IBAction)voltage_to0_push:(id)sender {
@@ -52,9 +51,16 @@ extern unsigned char cmd[5];
     [self update_command_display:nil];
 }
 
+- (IBAction)system_arm:(id)sender{
+    if (self.system_arm_button.selectedSegment == 0) {
+        self.send_button.enabled = NO;        
+    }
+    if (self.system_arm_button.selectedSegment == 1) {
+        self.send_button.enabled = YES;        
+    }
+}
+
 - (IBAction)send_command:(id)sender {
-    //self.commander.commandCount++;
-    //[self update_command_buffer:nil];
     NSString *command_history_buffer;
     NSRange myrange;
     NSString *command_string_line = [NSString stringWithFormat:@" Sent\n"];
@@ -111,17 +117,27 @@ extern unsigned char cmd[5];
     [self update_command_display:nil];
 }
 
-- (void)update_command_display:(id)sender {
-    //NSString *command_string = [NSString stringWithFormat:@"%02x %02x %02x %02x",cmd[0],cmd[1],cmd[2],cmd[3]];
+- (void) update_command_display:(id)sender{
+    NSString *command_to_display;
+    command_to_display = [self create_command_string:nil];
+    [self update_text_display:nil :command_to_display];
+}
+
+
+- (NSString *)create_command_string:(id)sender {
     
-    //[self.command_display setStringValue:command_string];
-    
-    NSString *command_history_buffer;
+    NSString *command_string_line = [NSString stringWithFormat:@"[%02i] %@ (%02x %02x %02x %02x)\n",self.commander.commandCount, self.commander.command_readable, cmd[0],cmd[1],cmd[2],cmd[3]];
+
+    return command_string_line;
+}
+
+- (void)update_text_display:(id)sender: (NSString *) text_to_display{
+
     NSRange myrange;
-    NSString *command_string_line = [NSString stringWithFormat:@"%02i: %@ - %02x %02x %02x %02x\n",self.commander.commandCount, self.commander.command_readable, cmd[0],cmd[1],cmd[2],cmd[3]];
-    
+    NSString *command_history_buffer;
+     
     command_history_buffer = [command_history_display string];
-    command_history_buffer = [command_history_buffer stringByAppendingString:command_string_line];
+    command_history_buffer = [command_history_buffer stringByAppendingString:text_to_display];
     
     // replace the text with new info
     [command_history_display setString:command_history_buffer];
@@ -129,8 +145,7 @@ extern unsigned char cmd[5];
     // scroll the text down
     myrange.length = [command_history_buffer length];
     [command_history_display scrollRangeToVisible:myrange]; 
-
-    
 }
+
 
 @end
