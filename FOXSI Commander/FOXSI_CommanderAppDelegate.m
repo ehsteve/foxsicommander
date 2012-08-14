@@ -11,11 +11,8 @@
 
 @implementation FOXSI_CommanderAppDelegate
 
-extern unsigned char cmd[5];
-
 @synthesize window;
 @synthesize voltage_input;
-@synthesize command_display;
 @synthesize command_history_display;
 @synthesize detector_chooser;
 @synthesize strip_chooser;
@@ -24,6 +21,7 @@ extern unsigned char cmd[5];
 @synthesize threshold_stepper;
 @synthesize send_button;
 @synthesize system_arm_button;
+@synthesize testmode_chooser;
 
 @synthesize commander = _commander;
 
@@ -52,7 +50,7 @@ extern unsigned char cmd[5];
 }
 
 - (IBAction)system_arm:(id)sender{
-    if (self.system_arm_button.selectedSegment == 0) {
+    if (self.system_arm_button.selectedSegment == 0){
         self.send_button.enabled = NO;        
     }
     if (self.system_arm_button.selectedSegment == 1) {
@@ -73,7 +71,16 @@ extern unsigned char cmd[5];
     
     // scroll the text down
     myrange.length = [command_history_buffer length];
-    [command_history_display scrollRangeToVisible:myrange]; 
+    [command_history_display scrollRangeToVisible:myrange];
+    
+    if (self.testmode_chooser.selectedSegment == 1) {
+        [self.commander send_command:1];
+    } else {
+        [self.commander send_command:0];
+    }
+    
+    self.system_arm_button.selectedSegment = 0;
+    self.send_button.enabled = NO;
 }
 
 - (IBAction)strip_disable_push:(id)sender{
@@ -118,34 +125,36 @@ extern unsigned char cmd[5];
 }
 
 - (void) update_command_display:(id)sender{
-    NSString *command_to_display;
-    command_to_display = [self create_command_string:nil];
-    [self update_text_display:nil :command_to_display];
-}
-
-
-- (NSString *)create_command_string:(id)sender {
     
-    NSString *command_string_line = [NSString stringWithFormat:@"[%02i] %@ (%02x %02x %02x %02x)\n",self.commander.commandCount, self.commander.command_readable, cmd[0],cmd[1],cmd[2],cmd[3]];
-
-    return command_string_line;
+    NSRange myrange;
+    NSString *command_history_buffer;
+    
+    for (int i = 0; i < self.commander.command_length; i++) {
+    
+        NSString *command_string_line = [NSString stringWithFormat:@"[%02i] %@ (%02x %02x %02x %02x)\n", i + self.commander.commandCount - self.commander.command_length + 1, self.commander.command_readable, [self.commander get_command:0+4*i], [self.commander get_command:1+4*i], [self.commander get_command:2+4*i], [self.commander get_command:3+4*i]];
+        
+        command_history_buffer = [command_history_display string];
+        command_history_buffer = [command_history_buffer stringByAppendingString:command_string_line];
+        
+        // replace the text with new info
+        [command_history_display setString:command_history_buffer];
+        
+        // scroll the text down
+        myrange.length = [command_history_buffer length];
+        [command_history_display scrollRangeToVisible:myrange];  
+    }
 }
+
+//- (NSString *)create_command_string:(id)sender {
+//    
+//    NSString *command_string_line = [NSString stringWithFormat:@"[%02i] %@ (%02x %02x %02x %02x)\n",self.commander.commandCount, self.commander.command_readable, cmd[0],cmd[1],cmd[2],cmd[3]];
+//
+//    return command_string_line;
+//}
 
 - (void)update_text_display:(id)sender: (NSString *) text_to_display{
 
-    NSRange myrange;
-    NSString *command_history_buffer;
-     
-    command_history_buffer = [command_history_display string];
-    command_history_buffer = [command_history_buffer stringByAppendingString:text_to_display];
-    
-    // replace the text with new info
-    [command_history_display setString:command_history_buffer];
-    
-    // scroll the text down
-    myrange.length = [command_history_buffer length];
-    [command_history_display scrollRangeToVisible:myrange]; 
-}
+   }
 
 
 @end

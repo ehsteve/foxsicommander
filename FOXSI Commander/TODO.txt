@@ -1,0 +1,3 @@
+TODO List
+
+-] Should not be able to hit the send button if no command has been defined.

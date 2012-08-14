@@ -25,7 +25,6 @@
 @property (assign) IBOutlet NSWindow *window;
 
 @property (assign) IBOutlet NSTextField *voltage_input;
-@property (assign) IBOutlet NSTextField *command_display;
 @property (assign) IBOutlet NSTextView *command_history_display;
 @property (assign) IBOutlet NSSegmentedControl *detector_chooser;
 @property (assign) IBOutlet NSTextField *strip_chooser;
@@ -34,6 +33,7 @@
 @property (assign) IBOutlet NSStepperCell *threshold_stepper;
 @property (assign) IBOutlet NSButton *send_button;
 @property (assign) IBOutlet NSSegmentedControl *system_arm_button;
+@property (assign) IBOutlet NSSegmentedControl *testmode_chooser;
 
 
 @property (assign) Commander *commander;
@@ -54,7 +54,7 @@
 - (IBAction)strip_stepper_action:(id)sender;
 - (IBAction)threshold_stepper_action:(id)sender;
 - (void) update_command_display:(id)sender;
-- (NSString *)create_command_string:(id)sender;
+//- (NSString *)create_command_string:(id)sender;
 - (void)update_text_display:(id)sender: (NSString *) text_to_display;
 
 @end

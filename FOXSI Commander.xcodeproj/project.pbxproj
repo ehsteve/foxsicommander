@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		865670F815DB104A004EC736 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 865670F715DB104A004EC736 /* TODO.txt */; };
 		86BCE290151CAEF70066B9B5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BCE28F151CAEF70066B9B5 /* Cocoa.framework */; };
 		86BCE29A151CAEF70066B9B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE298151CAEF70066B9B5 /* InfoPlist.strings */; };
 		86BCE29C151CAEF70066B9B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE29B151CAEF70066B9B5 /* main.m */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		865670F715DB104A004EC736 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		86BCE28B151CAEF60066B9B5 /* FOXSI Commander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FOXSI Commander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86BCE28F151CAEF70066B9B5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		86BCE292151CAEF70066B9B5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -90,6 +92,7 @@
 			children = (
 				86BCE2A1151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.h */,
 				86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */,
+				865670F715DB104A004EC736 /* TODO.txt */,
 				86BCE2AC151CB61B0066B9B5 /* Commander.h */,
 				86BCE2AD151CB61B0066B9B5 /* Commander.m */,
 				86BCE2A4151CAEF70066B9B5 /* MainMenu.xib */,
@@ -136,7 +139,7 @@
 		86BCE282151CAEF60066B9B5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "NASA GSFC";
 			};
 			buildConfigurationList = 86BCE285151CAEF60066B9B5 /* Build configuration list for PBXProject "FOXSI Commander" */;
@@ -165,6 +168,7 @@
 				86BCE2A0151CAEF70066B9B5 /* Credits.rtf in Resources */,
 				86BCE2A6151CAEF70066B9B5 /* MainMenu.xib in Resources */,
 				86CED62715A87C1900C7327F /* foxsi_commander_icon_500x50.png in Resources */,
+				865670F815DB104A004EC736 /* TODO.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +263,7 @@
 		86BCE2AA151CAEF70066B9B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOXSI Commander/FOXSI Commander-Prefix.pch";
 				INFOPLIST_FILE = "FOXSI Commander/FOXSI Commander-Info.plist";
@@ -270,6 +275,7 @@
 		86BCE2AB151CAEF70066B9B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOXSI Commander/FOXSI Commander-Prefix.pch";
 				INFOPLIST_FILE = "FOXSI Commander/FOXSI Commander-Info.plist";
