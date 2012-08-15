@@ -1,0 +1,42 @@
+NOTES
+=====
+
+Comparing output from *sethv* and FOXSI Commander
+-----------------------------------------------
+
+Setting voltage to 200 V (1600) - OK (14-aug-2012)
+f0 06 40 b6
+
+Setting voltage to 0 V (0) - OK (14-aug-2012)
+f0 00 00 f0
+
+Setting voltage to 20 V (160) - OK (14-aug-2012)
+f0 00 a0 50
+
+Comparing output from *attenuator0* and FOXSI Commander
+-----------------------------------------------
+
+Strobe 0 - OK (14-aug-2012)
+e8 00 00 e8
+
+Comparing output from *attenuator1* and FOXSI Commander
+-----------------------------------------------
+
+Strobe 1 - OK (14-aug-2012)
+e8 01 00 e9
+
+Comparing output from clock commands and FOXSI Commander
+-----------------------------------------------
+
+setclockf 0, 0
+
+f8 00 00 f8 - OK (14-aug-2012)
+f8 01 00 f9 - OK (14-aug-2012)
+f8 02 00 fa - OK (14-aug-2012)
+f8 03 00 fb - OK (14-aug-2012)
+f8 07 00 ff - OK (14-aug-2012)
+
+setclockhi 0, 0
+
+f8 04 00 fc - OK (14-aug-2012)
+f8 05 00 fd - OK (14-aug-2012)

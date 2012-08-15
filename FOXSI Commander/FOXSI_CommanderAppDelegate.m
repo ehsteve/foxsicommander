@@ -102,7 +102,7 @@
 }
 
 - (IBAction)clock_reset_push:(id)sender {
-    [self.commander create_cmd_clock:0:0];
+    [self.commander create_cmd_clock:0LL:0LL];
     [self update_command_display:nil];
 }
 
@@ -115,12 +115,12 @@
 }
 
 - (IBAction)attenuator_strobe1_push:(id)sender {
-    [self.commander create_cmd_attenuator:1];    
+    [self.commander create_cmd_attenuator:0];
     [self update_command_display:nil];
 }
 
 - (IBAction)attenuator_strobe2_push:(id)sender {
-    [self.commander create_cmd_attenuator:0];
+    [self.commander create_cmd_attenuator:1];
     [self update_command_display:nil];
 }
 

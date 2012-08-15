@@ -1637,7 +1637,7 @@
 											<object class="NSButtonCell" key="NSCell" id="502229653">
 												<int key="NSCellFlags">-2080374784</int>
 												<int key="NSCellFlags2">134217728</int>
-												<string key="NSContents">Strobe 1</string>
+												<string key="NSContents">Strobe 0</string>
 												<reference key="NSSupport" ref="945138044"/>
 												<string key="NSCellIdentifier">_NS:1534</string>
 												<reference key="NSControlView" ref="141384656"/>
@@ -1665,7 +1665,7 @@
 											<object class="NSButtonCell" key="NSCell" id="612627961">
 												<int key="NSCellFlags">-2080374784</int>
 												<int key="NSCellFlags2">134217728</int>
-												<string key="NSContents">Strobe 2</string>
+												<string key="NSContents">Strobe 1</string>
 												<reference key="NSSupport" ref="945138044"/>
 												<string key="NSCellIdentifier">_NS:1534</string>
 												<reference key="NSControlView" ref="902200615"/>

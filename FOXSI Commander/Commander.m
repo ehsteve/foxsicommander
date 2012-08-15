@@ -190,7 +190,8 @@ unsigned char cmd[40];
 }
 
 -(void)create_cmd_clock:(long long) clock_lo: (long long) clock_hi
-{                
+{
+    // the following code is from setflockf
     cmd[0] = 0xf8;
     cmd[1] = 0x0;
     cmd[2] = (unsigned char) (clock_lo & 0xff);
@@ -198,58 +199,58 @@ unsigned char cmd[40];
     cmd[3] ^= cmd[0];
     cmd[3] ^= cmd[1];
     cmd[3] ^= cmd[2];
-    NSLog(@"Sending bytes %02x %02x %02x %02x \n",cmd[0],cmd[1],cmd[2],cmd[3]);
     
     cmd[4] = 0xf8;
     cmd[5] = 0x01;
     cmd[6] = (unsigned char) ( (clock_lo >> 8) & 0xff);
     cmd[7] = 0x0;
-    cmd[8] ^= cmd[0];
-    cmd[8] ^= cmd[1];
-    cmd[8] ^= cmd[2];
+    cmd[7] ^= cmd[4];
+    cmd[7] ^= cmd[5];
+    cmd[7] ^= cmd[6];
+
+    cmd[8] = 0xf8;
+    cmd[9] = 0x02;
+    cmd[10] = (unsigned char) ( (clock_lo >> 16) & 0xff);
+    cmd[11] = 0x0;
+    cmd[11] ^= cmd[8];
+    cmd[11] ^= cmd[9];
+    cmd[11] ^= cmd[10];
+
+    cmd[12] = 0xf8;
+    cmd[13] = 0x03;
+    cmd[14] = (unsigned char) ( (clock_lo >> 24) & 0xff);
+    cmd[15] = 0x0;
+    cmd[15] ^= cmd[12];
+    cmd[15] ^= cmd[13];
+    cmd[15] ^= cmd[14];
+
+    cmd[16] = 0xf8;
+    cmd[17] = 0x07;
+    cmd[18] = 0x0;
+    cmd[19] = 0x0;
+    cmd[19] ^= cmd[16];
+    cmd[19] ^= cmd[17];
+    cmd[19] ^= cmd[18];
     
-    cmd[9] = 0xf8;
-    cmd[10] = 0x02;
-    cmd[11] = (unsigned char) ( (clock_lo >> 16) & 0xff);
-    cmd[12] = 0x0;
-    cmd[13] ^= cmd[0];
-    cmd[13] ^= cmd[1];
-    cmd[13] ^= cmd[2];
-    
-    cmd[14] = 0xf8;
-    cmd[15] = 0x03;
-    cmd[16] = (unsigned char) ( (clock_lo >> 24) & 0xff);
-    cmd[17] = 0x0;
-    cmd[18] ^= cmd[0];
-    cmd[18] ^= cmd[1];
-    cmd[18] ^= cmd[2];
-  
-    cmd[19] = 0xf8;
-    cmd[20] = 0x07;
-    cmd[21] = 0x0;
-    cmd[22] = 0x0;
-    cmd[23] ^= cmd[0];
-    cmd[23] ^= cmd[1];
-    cmd[23] ^= cmd[2];
-  
-    cmd[24] = 0xf8;
-    cmd[25] = 0x04;
-    cmd[26] = (unsigned char) (clock_hi &0xff);
-    cmd[27] = 0x0;
-    cmd[27] ^= cmd[0];
-    cmd[27] ^= cmd[1];
-    cmd[27] ^= cmd[2];
+    // the following code is from setclockhi
+    cmd[20] = 0xf8;
+    cmd[21] = 0x04;
+    cmd[22] = (unsigned char) (clock_hi &0xff);
+    cmd[23] = 0x0;
+    cmd[23] ^= cmd[20];
+    cmd[23] ^= cmd[21];
+    cmd[23] ^= cmd[22];
  
-    cmd[28] = 0xf8;
-    cmd[29] = 0x05;
-    cmd[30] = (unsigned char) ( (clock_hi >> 8) & 0xff);
-    cmd[31] = 0x0;
-    cmd[32] ^= cmd[0];
-    cmd[32] ^= cmd[1];
-    cmd[32] ^= cmd[2];
+    cmd[24] = 0xf8;
+    cmd[25] = 0x05;
+    cmd[26] = (unsigned char) ( (clock_hi >> 8) & 0xff);
+    cmd[27] = 0x0;
+    cmd[27] ^= cmd[24];
+    cmd[27] ^= cmd[25];
+    cmd[27] ^= cmd[26];
 
     self.command_readable = [NSString stringWithFormat:@"Clock to %i %i", clock_hi, clock_lo];
-    self.command_length = 8;
+    self.command_length = 7;
     self.commandCount+= 7;
 }
 

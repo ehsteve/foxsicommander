@@ -15,6 +15,7 @@
 		86BCE2A3151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */; };
 		86BCE2A6151CAEF70066B9B5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE2A4151CAEF70066B9B5 /* MainMenu.xib */; };
 		86BCE2AE151CB61B0066B9B5 /* Commander.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE2AD151CB61B0066B9B5 /* Commander.m */; };
+		86CC1C4715DB18E7007BD196 /* NOTES.txt in Resources */ = {isa = PBXBuildFile; fileRef = 86CC1C4615DB18E7007BD196 /* NOTES.txt */; };
 		86CED62715A87C1900C7327F /* foxsi_commander_icon_500x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 86CED62615A87C1900C7327F /* foxsi_commander_icon_500x50.png */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		86BCE2A5151CAEF70066B9B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		86BCE2AC151CB61B0066B9B5 /* Commander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commander.h; sourceTree = "<group>"; };
 		86BCE2AD151CB61B0066B9B5 /* Commander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commander.m; sourceTree = "<group>"; };
+		86CC1C4615DB18E7007BD196 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = "<group>"; };
 		86CED62615A87C1900C7327F /* foxsi_commander_icon_500x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foxsi_commander_icon_500x50.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 				865670F715DB104A004EC736 /* TODO.txt */,
 				86BCE2AC151CB61B0066B9B5 /* Commander.h */,
 				86BCE2AD151CB61B0066B9B5 /* Commander.m */,
+				86CC1C4615DB18E7007BD196 /* NOTES.txt */,
 				86BCE2A4151CAEF70066B9B5 /* MainMenu.xib */,
 				86BCE296151CAEF70066B9B5 /* Supporting Files */,
 			);
@@ -169,6 +172,7 @@
 				86BCE2A6151CAEF70066B9B5 /* MainMenu.xib in Resources */,
 				86CED62715A87C1900C7327F /* foxsi_commander_icon_500x50.png in Resources */,
 				865670F815DB104A004EC736 /* TODO.txt in Resources */,
+				86CC1C4715DB18E7007BD196 /* NOTES.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
