@@ -151,7 +151,7 @@ unsigned char cmd[40];
     cmd[3] ^= cmd[1];
     cmd[3] ^= cmd[2];
     
-    self.command_readable = [NSString stringWithFormat:@"Det %i strip %i off", detector_number, strip_number];
+    self.command_readable = [NSString stringWithFormat:@"Det %li strip %i off", detector_number, strip_number];
     self.command_length = 1;
     self.commandCount++;
 }
