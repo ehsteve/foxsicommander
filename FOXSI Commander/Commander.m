@@ -48,7 +48,10 @@ unsigned char cmd[40];
     
     fsercmd = [self command_initialize_serial:testmode];
     for (int i = 0; i < self.command_length; i++) {
-        write(fsercmd,&cmd[4*i*self.command_length],4);
+        write(fsercmd,&cmd[4*i],4);
+        NSLog(@"writing %02x %02x %02x %02x\n", cmd[4*i+0],cmd[4*i+1],cmd[4*i+2],cmd[4*i+3]);
+        // wait 0.5 s before sending the next command
+        usleep(500000);
     }
 
     [self init_command_variables];
@@ -121,7 +124,7 @@ unsigned char cmd[40];
     self.command_length = 1;
 }
 
--(void)create_cmd_stripoff:(NSInteger) detector_number: (NSInteger) strip_number
+-(void)create_cmd_stripoff:(NSInteger) detector_number: (int) strip_number
 {
     // create command to turn a strip off
     
@@ -153,11 +156,11 @@ unsigned char cmd[40];
     self.commandCount++;
 }
 
--(void) create_cmd_setthreshold:(NSInteger) detector_number: (NSInteger) threshhold
+-(void) create_cmd_setthreshold:(NSInteger) detector_number: (NSInteger) asic: (int) threshhold
 {
     int cmdvalue;
     
-    if(detector_number == 0)
+    if(asic == 0)
     {
         cmdvalue = 0x80;
     }
@@ -168,24 +171,18 @@ unsigned char cmd[40];
     
     cmdvalue |= threshhold;
 
-    if( threshhold > 31)
-    {
-        NSLog(@" Threshold greater than 31, too large %d \n",(int) threshhold);
-    }
-    else {
-        cmd[0] = 0xc0;
-        cmd[1] = 0;
-        cmd[1] |= detector_number;
-        cmd[2] = (unsigned char) (cmdvalue &0xff);
-        cmd[3] = 0x0;
-        cmd[3] ^= cmd[0];
-        cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2];
-        
-        self.command_readable = [NSString stringWithFormat:@"Det %i threshold to %i", detector_number, threshhold];
-        self.command_length = 1;
-        self.commandCount++;
-    }
+    cmd[0] = 0xc0;
+    cmd[1] = 0;
+    cmd[1] |= detector_number;
+    cmd[2] = (unsigned char) (cmdvalue & 0xff);
+    cmd[3] = 0x0;
+    cmd[3] ^= cmd[0];
+    cmd[3] ^= cmd[1];
+    cmd[3] ^= cmd[2];
+    
+    self.command_readable = [NSString stringWithFormat:@"Det %ld, asic %ld, threshold to %i", detector_number, asic, threshhold];
+    self.command_length = 1;
+    self.commandCount++;
     
 }
 
@@ -249,7 +246,7 @@ unsigned char cmd[40];
     cmd[27] ^= cmd[25];
     cmd[27] ^= cmd[26];
 
-    self.command_readable = [NSString stringWithFormat:@"Clock to %i %i", clock_hi, clock_lo];
+    self.command_readable = [NSString stringWithFormat:@"Clock to %lli %lli", clock_hi, clock_lo];
     self.command_length = 7;
     self.commandCount+= 7;
 }

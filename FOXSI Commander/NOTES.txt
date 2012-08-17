@@ -2,7 +2,7 @@ NOTES
 =====
 
 Comparing output from *sethv* and FOXSI Commander
------------------------------------------------
+-------------------------------------------------
 
 Setting voltage to 200 V (1600) - OK (14-aug-2012)
 f0 06 40 b6
@@ -14,19 +14,19 @@ Setting voltage to 20 V (160) - OK (14-aug-2012)
 f0 00 a0 50
 
 Comparing output from *attenuator0* and FOXSI Commander
------------------------------------------------
+-------------------------------------------------------
 
 Strobe 0 - OK (14-aug-2012)
 e8 00 00 e8
 
 Comparing output from *attenuator1* and FOXSI Commander
------------------------------------------------
+-------------------------------------------------------
 
 Strobe 1 - OK (14-aug-2012)
 e8 01 00 e9
 
 Comparing output from clock commands and FOXSI Commander
------------------------------------------------
+--------------------------------------------------------
 
 setclockf 0, 0
 
@@ -40,3 +40,42 @@ setclockhi 0, 0
 
 f8 04 00 fc - OK (14-aug-2012)
 f8 05 00 fd - OK (14-aug-2012)
+
+Comparing output from stripoff and FOXSI Commander
+--------------------------------------------------
+
+stripoff 6, 26
+c0 06 25 e3 - OK (16-aug-2012)
+
+stripoff 4, 114
+c0 04 4d 89 - OK (16-aug-2012)
+
+stripoff 1, 45
+c0 01 12 d3 - OK (16-aug-2012)
+
+stripoff, 1, 0
+c0 01 3f fe - OK (16-aug-2012)
+
+stripoff, 0, 0
+c0 00 3f ff - OK (16-aug-2012)
+
+Comparing output from setthresh and FOXSI Commander
+---------------------------------------------------
+
+setthresh 4, 0, 30
+c0 04 9e 5a - OK (16-aug-2012)
+
+setthresh 2, 0, 30
+c0 02 9e 5c - OK (16-aug-2012)
+
+setthresh 0, 1, 30
+c0 00 de 1e - OK (16-aug-2012)
+
+setthresh 1, 0, 10
+c0 01 8a 4b - OK (16-aug-2012)
+
+setthresh 0, 0, 0
+c0 00 80 40 - OK (16-aug-2012)
+
+setthresh 0, 1, 1
+c0 00 c1 01 - OK (16-aug-2012)

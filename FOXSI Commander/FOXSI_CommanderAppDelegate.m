@@ -14,7 +14,8 @@
 @synthesize window;
 @synthesize voltage_input;
 @synthesize command_history_display;
-@synthesize detector_chooser;
+@synthesize stripDisable_detector_chooser;
+@synthesize thresholdSet_detector_chooser;
 @synthesize strip_chooser;
 @synthesize threshold_chooser;
 @synthesize strip_stepper;
@@ -22,6 +23,7 @@
 @synthesize send_button;
 @synthesize system_arm_button;
 @synthesize testmode_chooser;
+@synthesize asic_chooser;
 
 @synthesize commander = _commander;
 
@@ -84,13 +86,17 @@
 }
 
 - (IBAction)strip_disable_push:(id)sender{
-    [self.commander create_cmd_stripoff:[self.detector_chooser selectedSegment]:[self.strip_chooser intValue]];
-    [self update_command_display:nil];    
+    if ([self.strip_chooser intValue] <= 127) {
+        [self.commander create_cmd_stripoff:[self.stripDisable_detector_chooser selectedSegment]:[self.strip_chooser intValue]];
+        [self update_command_display:nil];
+    }
 }
 
 - (IBAction)threshold_set_push:(id)sender {
-    [self.commander create_cmd_setthreshold:[self.detector_chooser selectedSegment]:[self.threshold_chooser intValue]];
-    [self update_command_display:nil];
+    if ([self.threshold_chooser intValue] <= 31) {
+        [self.commander create_cmd_setthreshold:[self.thresholdSet_detector_chooser selectedSegment]:[self.asic_chooser selectedSegment]: [self.threshold_chooser intValue]];
+        [self update_command_display:nil];
+    }
 }
 
 - (IBAction)sync_strip_stepper:(id)sender {

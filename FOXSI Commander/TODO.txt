@@ -1,3 +1,4 @@
 TODO List
 
 -] Should not be able to hit the send button if no command has been defined.
+-] Incremending a number should always increment what is typed in. Connection between threshold_chooser and threshold_stepper not great.

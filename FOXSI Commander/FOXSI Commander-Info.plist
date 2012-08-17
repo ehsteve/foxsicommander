@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>foxsi_commander_icon_500x50.png</string>
+	<string>icon_512x512.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>ehsteve.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
