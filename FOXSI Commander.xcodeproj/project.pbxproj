@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8628BDC11623A1C600967BAC /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8628BDC01623A1C600967BAC /* icon.iconset */; };
+		8628BDC51623A28400967BAC /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8628BDC41623A28400967BAC /* icon.icns */; };
 		865670F815DB104A004EC736 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 865670F715DB104A004EC736 /* TODO.txt */; };
 		86BCE290151CAEF70066B9B5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BCE28F151CAEF70066B9B5 /* Cocoa.framework */; };
 		86BCE29A151CAEF70066B9B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE298151CAEF70066B9B5 /* InfoPlist.strings */; };
@@ -16,10 +18,11 @@
 		86BCE2A6151CAEF70066B9B5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE2A4151CAEF70066B9B5 /* MainMenu.xib */; };
 		86BCE2AE151CB61B0066B9B5 /* Commander.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE2AD151CB61B0066B9B5 /* Commander.m */; };
 		86CC1C4715DB18E7007BD196 /* NOTES.txt in Resources */ = {isa = PBXBuildFile; fileRef = 86CC1C4615DB18E7007BD196 /* NOTES.txt */; };
-		86EAA72C15DD99E2005EB534 /* icon_512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 86EAA72B15DD99E2005EB534 /* icon_512x512.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8628BDC01623A1C600967BAC /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
+		8628BDC41623A28400967BAC /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
 		865670F715DB104A004EC736 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		86BCE28B151CAEF60066B9B5 /* FOXSI Commander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FOXSI Commander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86BCE28F151CAEF70066B9B5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -37,7 +40,6 @@
 		86BCE2AC151CB61B0066B9B5 /* Commander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commander.h; sourceTree = "<group>"; };
 		86BCE2AD151CB61B0066B9B5 /* Commander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commander.m; sourceTree = "<group>"; };
 		86CC1C4615DB18E7007BD196 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = "<group>"; };
-		86EAA72B15DD99E2005EB534 /* icon_512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_512x512.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +108,8 @@
 		86BCE296151CAEF70066B9B5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				86EAA72B15DD99E2005EB534 /* icon_512x512.png */,
+				8628BDC41623A28400967BAC /* icon.icns */,
+				8628BDC01623A1C600967BAC /* icon.iconset */,
 				86BCE297151CAEF70066B9B5 /* FOXSI Commander-Info.plist */,
 				86BCE298151CAEF70066B9B5 /* InfoPlist.strings */,
 				86BCE29B151CAEF70066B9B5 /* main.m */,
@@ -172,7 +175,8 @@
 				86BCE2A6151CAEF70066B9B5 /* MainMenu.xib in Resources */,
 				865670F815DB104A004EC736 /* TODO.txt in Resources */,
 				86CC1C4715DB18E7007BD196 /* NOTES.txt in Resources */,
-				86EAA72C15DD99E2005EB534 /* icon_512x512.png in Resources */,
+				8628BDC11623A1C600967BAC /* icon.iconset in Resources */,
+				8628BDC51623A28400967BAC /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
