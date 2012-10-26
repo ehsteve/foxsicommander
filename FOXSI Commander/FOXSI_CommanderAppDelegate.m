@@ -35,51 +35,63 @@
     Commander *aCommander = [[Commander alloc] init];
     [self setCommander:aCommander];
     
-    NSLog(@"hello!");
+    //now search for the correct device file
+    //tty.USA19Hfa13,1,2,3
+    [device_name setStringValue:@"/dev/tty.KeySerial"];
+    [device_name setTextColor:[NSColor redColor]];
     
-    NSURL *theURL = [NSURL fileURLWithPath:self.commander.serial_device_name isDirectory:NO];
-    NSError *err;
-
-    [device_name setStringValue:self.commander.serial_device_name];
-
-    if ([theURL checkResourceIsReachableAndReturnError:&err] == NO){
-        [device_name setTextColor:[NSColor redColor]];
+    NSDirectoryEnumerator *itr =
+    [[NSFileManager defaultManager] enumeratorAtURL:[NSURL fileURLWithPath:@"/dev/"]
+                         includingPropertiesForKeys:nil
+                                options:(NSDirectoryEnumerationSkipsHiddenFiles | NSDirectoryEnumerationSkipsPackageDescendants)
+                                       errorHandler:nil];
+    for (NSURL *url in itr)
+    {
+        if( ([[url path] hasPrefix:@"/dev/tty.KeySerial"]) || ([[url path] hasPrefix:@"/dev/tty.USA19Hfa"]))
+        {
+            NSLog(@"found it! %@", [url path]);
+            self.commander.serial_device_name = [url path];
+            [device_name setStringValue:self.commander.serial_device_name];
+            [device_name setTextColor:[NSColor blackColor]];
+        }
     }
+
 }
 
 
-- (IBAction)open_device:(id)sender {    
-    // Create the File Open Dialog class.
-    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
-    
-    [openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/Systems/"]];
-    //[openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/System/Library/CoreServices/prndrv"]];
-    
-    // Enable the selection of files in the dialog.
-    [openDlg setCanChooseFiles:YES];
-    
-    // Enable the selection of directories in the dialog.
-    [openDlg setCanChooseDirectories:NO];
-    
-    // Disable choosing multiple files
-    [openDlg setAllowsMultipleSelection:NO];
-    
-    // set start directory to
-
-    // Display the dialog.  If the OK button was pressed,
-    // process the files.
-    
-    [openDlg beginWithCompletionHandler:^(NSInteger result){
-        if (result == NSFileHandlingPanelOKButton) {
-            NSURL* theFile = [[openDlg URLs] objectAtIndex:0];
-                        
-            NSURL* fileName = [theFile objectAtIndex:0];
-            self.commander.serial_device_name = [fileName path];
-            [device_name setStringValue:[fileName path]];
-            // Open  the document.
-        }
-    }];
- }
+//- (IBAction)open_device:(id)sender {
+//    // Create the File Open Dialog class.
+//    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+//    
+//    [openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/Systems/"]];
+//    //[openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/System/Library/CoreServices/prndrv"]];
+//    
+//    // Enable the selection of files in the dialog.
+//    [openDlg setCanChooseFiles:YES];
+//    
+//    // Enable the selection of directories in the dialog.
+//    [openDlg setCanChooseDirectories:NO];
+//    
+//    // Disable choosing multiple files
+//    [openDlg setAllowsMultipleSelection:NO];
+//    
+//    // set start directory to
+//
+//    // Display the dialog.  If the OK button was pressed,
+//    // process the files.
+//    
+//    [openDlg beginWithCompletionHandler:^(NSInteger result){
+//        if (result == NSFileHandlingPanelOKButton) {
+//            NSURL* theFile = [[openDlg URLs] objectAtIndex:0];
+//                        
+//            NSURL* fileName = [theFile objectAtIndex:0];
+//            self.commander.serial_device_name = [fileName path];
+//            [device_name setStringValue:[fileName path]];
+//            // Open  the document.
+//            
+//        }
+//    }];
+// }
 
 - (IBAction)set_device_name:(id)sender {
     
