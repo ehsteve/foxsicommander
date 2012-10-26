@@ -17,6 +17,7 @@
 @property (assign) int commandCount;
 @property (assign) int command_length;
 @property (assign) NSString *command_readable;
+@property (assign) NSString *serial_device_name;
 
 -(void)create_cmd_hv:(int) hvvalue;
 -(void)create_cmd_attenuator:(bool) state;

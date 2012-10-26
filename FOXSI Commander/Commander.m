@@ -29,7 +29,9 @@ unsigned char cmd[40];
 // stores a string for a readable version of the command in the buffer
 @synthesize command_readable = _command_readable;
 // stores the command lenght in words, most commands are just one word long
-@synthesize command_length = _command_length;   
+@synthesize command_length = _command_length;
+// stores the device name
+@synthesize serial_device_name = _serial_device_name;
 
 - (id)init
 {
@@ -39,6 +41,8 @@ unsigned char cmd[40];
         self.commandCount = 0;
         self.command_length = 0;
     }
+    
+    self.serial_device_name = @"/dev/tty.KeySerial1";
     
     return self;
 }
@@ -268,21 +272,26 @@ unsigned char cmd[40];
 	int status;
 	int fsercmd;
     int ttyout;
-    char serial_device_fname[40];
+    char filename[40];
     struct stat mystat;
     int devicefile;
     struct termios sertty;
 
-    if (testmode == TRUE) {
-        strcpy(serial_device_fname, "/Users/schriste/Desktop/test.dat");
-    } else
-    {
-        strcpy(serial_device_fname, "/dev/tty.KeySerial1");
-    }
+    strcpy(filename, [self.serial_device_name UTF8String]);
+    //printf("%s", temp);
+    //strcpy(temp, [strValue cStringUsingEncoding:NSUTF16LittleEndianStringEncoding]);
+    //NSLog(@"%S", temp);
     
-	if( (fsercmd = open(serial_device_fname,O_RDWR | O_NOCTTY | O_NDELAY)) < 0)
+    //if (testmode == TRUE) {
+    //    strcpy(temp, "/Users/schriste/Desktop/test.dat");
+    //} else
+    //{
+    //    strcpy(temp, "/dev/tty.KeySerial1");
+    //}
+    
+	if( (fsercmd = open(filename,O_RDWR | O_NOCTTY | O_NDELAY)) < 0)
 	{
-		printf("Error opening file %s  (if disk file must exist)\n" ,serial_device_fname);
+		printf("Error opening file %s  (if disk file must exist)\n" ,filename);
 		return 0;
 	} else {
 		

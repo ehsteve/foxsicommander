@@ -24,6 +24,8 @@
 @synthesize system_arm_button;
 @synthesize testmode_chooser;
 @synthesize asic_chooser;
+@synthesize device_name;
+
 
 @synthesize commander = _commander;
 
@@ -32,6 +34,68 @@
     // Insert code here to initialize your application
     Commander *aCommander = [[Commander alloc] init];
     [self setCommander:aCommander];
+    
+    NSLog(@"hello!");
+    
+    NSURL *theURL = [NSURL fileURLWithPath:self.commander.serial_device_name isDirectory:NO];
+    NSError *err;
+
+    [device_name setStringValue:self.commander.serial_device_name];
+
+    if ([theURL checkResourceIsReachableAndReturnError:&err] == NO){
+        [device_name setTextColor:[NSColor redColor]];
+    }
+}
+
+
+- (IBAction)open_device:(id)sender {    
+    // Create the File Open Dialog class.
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    
+    [openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/Systems/"]];
+    //[openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/System/Library/CoreServices/prndrv"]];
+    
+    // Enable the selection of files in the dialog.
+    [openDlg setCanChooseFiles:YES];
+    
+    // Enable the selection of directories in the dialog.
+    [openDlg setCanChooseDirectories:NO];
+    
+    // Disable choosing multiple files
+    [openDlg setAllowsMultipleSelection:NO];
+    
+    // set start directory to
+
+    // Display the dialog.  If the OK button was pressed,
+    // process the files.
+    
+    [openDlg beginWithCompletionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL* theFile = [[openDlg URLs] objectAtIndex:0];
+                        
+            NSURL* fileName = [theFile objectAtIndex:0];
+            self.commander.serial_device_name = [fileName path];
+            [device_name setStringValue:[fileName path]];
+            // Open  the document.
+        }
+    }];
+ }
+
+- (IBAction)set_device_name:(id)sender {
+    
+    NSURL *theURL = [NSURL fileURLWithPath:[device_name stringValue] isDirectory:NO];
+    NSError *err;
+    
+    if ([theURL checkResourceIsReachableAndReturnError:&err] == NO){
+        [self update_text_display:@"File device not found!\n"];
+        [device_name setTextColor:[NSColor redColor]];
+        NSLog(@"error");
+    } else {
+        [self update_text_display:@"File device set.\n"];
+        [device_name setTextColor:[NSColor blackColor]];
+        self.commander.serial_device_name = [device_name stringValue];
+        
+    }
 }
 
 - (IBAction)voltage_toX_push:(id)sender {
@@ -139,28 +203,37 @@
     
         NSString *command_string_line = [NSString stringWithFormat:@"[%02i] %@ (%02x %02x %02x %02x)\n", i + self.commander.commandCount - self.commander.command_length + 1, self.commander.command_readable, [self.commander get_command:0+4*i], [self.commander get_command:1+4*i], [self.commander get_command:2+4*i], [self.commander get_command:3+4*i]];
         
-        command_history_buffer = [command_history_display string];
-        command_history_buffer = [command_history_buffer stringByAppendingString:command_string_line];
+        [self update_text_display: command_string_line];
+        
+        //command_history_buffer = [command_history_display string];
+        //command_history_buffer = [command_history_buffer stringByAppendingString:command_string_line];
         
         // replace the text with new info
-        [command_history_display setString:command_history_buffer];
+        //[command_history_display setString:command_history_buffer];
         
         // scroll the text down
-        myrange.length = [command_history_buffer length];
-        [command_history_display scrollRangeToVisible:myrange];  
+        //myrange.length = [command_history_buffer length];
+        //[command_history_display scrollRangeToVisible:myrange];
     }
 }
 
-//- (NSString *)create_command_string:(id)sender {
-//    
-//    NSString *command_string_line = [NSString stringWithFormat:@"[%02i] %@ (%02x %02x %02x %02x)\n",self.commander.commandCount, self.commander.command_readable, cmd[0],cmd[1],cmd[2],cmd[3]];
-//
-//    return command_string_line;
-//}
+- (void)update_text_display:(NSString *) text_to_display {
+    
+    NSRange myrange;
+    NSString *text_buffer;
+    NSLog(@"%@",text_to_display);
+        
+    text_buffer = [command_history_display string];
+    text_buffer = [text_buffer stringByAppendingString: text_to_display];
+    
+    // replace the text with new info
+    [command_history_display setString:text_buffer];
+    
+    // scroll the text down
+    myrange.length = [text_buffer length];
+    [command_history_display scrollRangeToVisible:myrange];
 
-- (void)update_text_display:(id)sender: (NSString *) text_to_display{
-
-   }
+}
 
 
 @end

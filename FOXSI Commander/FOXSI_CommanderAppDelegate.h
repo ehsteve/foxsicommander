@@ -37,6 +37,7 @@
 @property (assign) IBOutlet NSSegmentedControl *system_arm_button;
 @property (assign) IBOutlet NSSegmentedControl *testmode_chooser;
 @property (assign) IBOutlet NSSegmentedControl *asic_chooser;
+@property (assign) IBOutlet NSTextField *device_name;
 
 
 @property (assign) Commander *commander;
@@ -53,11 +54,12 @@
 - (IBAction)sync_threshold_stepper:(id)sender;
 - (IBAction)clock_reset_push:(id)sender;
 - (IBAction)system_arm:(id)sender;
+- (IBAction)set_device_name:(id)sender;
 
 - (IBAction)strip_stepper_action:(id)sender;
 - (IBAction)threshold_stepper_action:(id)sender;
 - (void) update_command_display:(id)sender;
 //- (NSString *)create_command_string:(id)sender;
-- (void)update_text_display:(id)sender: (NSString *) text_to_display;
+- (void)update_text_display:(NSString *) text_to_display;
 
 @end
