@@ -19,6 +19,7 @@ unsigned char cmd[40];
 -(void)test:(int) hvvalue;
 -(int)command_initialize_serial:(bool) testmode;
 -(void)init_command_variables;
+-(void)close_serial:(bool) testmode;
 
 @end
 
@@ -48,16 +49,16 @@ unsigned char cmd[40];
 }
 
 -(void)send_command:(bool)testmode{
-    int fsercmd;
     
-    fsercmd = [self command_initialize_serial:testmode];
+    [self command_initialize_serial:testmode];
     for (int i = 0; i < self.command_length; i++) {
-        write(fsercmd,&cmd[4*i],4);
+        write(self.fsercmd,&cmd[4*i],4);
         NSLog(@"writing %02x %02x %02x %02x\n", cmd[4*i+0],cmd[4*i+1],cmd[4*i+2],cmd[4*i+3]);
         // wait 0.5 s before sending the next command
         usleep(500000);
     }
-
+    [self close_serial:0];
+    
     [self init_command_variables];
 
 }
@@ -270,15 +271,16 @@ unsigned char cmd[40];
     // private
     // initialize connection to serial
 	int status;
-	int fsercmd;
     int ttyout;
     char filename[40];
     struct stat mystat;
     int devicefile;
     struct termios sertty;
 
+    // filename = "/dev/tty.USA19Hfd14P1.1\0";
+    
     strcpy(filename, [self.serial_device_name UTF8String]);
-    //printf("%s", temp);
+    printf("%s", filename);
     //strcpy(temp, [strValue cStringUsingEncoding:NSUTF16LittleEndianStringEncoding]);
     //NSLog(@"%S", temp);
     
@@ -289,17 +291,17 @@ unsigned char cmd[40];
     //    strcpy(temp, "/dev/tty.KeySerial1");
     //}
     
-	if( (fsercmd = open(filename,O_RDWR | O_NOCTTY | O_NDELAY)) < 0)
+	if( (self.fsercmd = open([self.serial_device_name UTF8String],O_RDWR | O_NOCTTY | O_NDELAY)) < 0)
 	{
 		printf("Error opening file %s  (if disk file must exist)\n" ,filename);
 		return 0;
 	} else {
 		
-		fstat(fsercmd,&mystat);
+		fstat(self.fsercmd,&mystat);
 		if( S_IFCHR & mystat.st_mode )
 		{
 			devicefile = 1;
-			tcgetattr(fsercmd,&sertty); /* get serial line properties */
+			tcgetattr(self.fsercmd,&sertty); /* get serial line properties */
 			sertty.c_iflag = IGNBRK;
 			sertty.c_lflag  &= ~(ICANON | ECHO | ECHOE | ISIG); /* raw input */
 			sertty.c_oflag &= ~OPOST;
@@ -308,18 +310,23 @@ unsigned char cmd[40];
 			sertty.c_cflag = (sertty.c_cflag & ~CSIZE) | CS8; /* 8 bits */
 			sertty.c_cflag &= ~( CRTSCTS | PARENB | PARODD | CSTOPB); /*no CTS, no parity, 1 stop */
 			sertty.c_cflag |= (CLOCAL | CREAD | CSTOPB); /* ok, 2 stop for safety */
-			tcsetattr(fsercmd,TCSANOW,&sertty);
+			tcsetattr(self.fsercmd,TCSANOW,&sertty);
 			//      printf(" %d  %x \n", devicefile, mystat.st_mode);
-			ioctl(fsercmd, TIOCMGET, &status);
+			ioctl(self.fsercmd, TIOCMGET, &status);
 			status |= TIOCM_LE;
 			status |= TIOCM_DTR;
-			ioctl(fsercmd, TIOCMSET, &status);
+			ioctl(self.fsercmd, TIOCMSET, &status);
 		}
 		//      fstat(fileno(stdout),&mystat);
 		//      if((S_IFREG & mystat.st_mode) == 0) ttyout = 1;
 		ttyout = isatty(fileno(stdout));
-		return fsercmd;
+		return self.fsercmd;
 	}
+}
+
+-(void)close_serial:(bool) testmode
+{
+    close(self.fsercmd);
 }
 
 @end

@@ -47,12 +47,22 @@
                                        errorHandler:nil];
     for (NSURL *url in itr)
     {
-        if( ([[url path] hasPrefix:@"/dev/tty.KeySerial"]) || ([[url path] hasPrefix:@"/dev/tty.USA19Hfa"]))
+        if( ([[url path] hasPrefix:@"/dev/tty.KeySerial"]) || ([[url path] hasPrefix:@"/dev/tty.USA19H"]))
         {
-            NSLog(@"found it! %@", [url path]);
-            self.commander.serial_device_name = [url path];
-            [device_name setStringValue:self.commander.serial_device_name];
-            [device_name setTextColor:[NSColor blackColor]];
+            int fsercmd;
+            // now test if can send commands to it
+            if( (fsercmd = open([[url path] UTF8String],O_RDWR | O_NOCTTY | O_NDELAY)) < 0)
+            {
+                printf("Error opening file %s  (if disk file must exist)\n" ,[[url path] UTF8String]);
+            } else
+            {
+                NSLog(@"found it! %@", [url path]);
+                self.commander.serial_device_name = [url path];
+                NSLog(@"%@",self.commander.serial_device_name);
+                [device_name setStringValue:self.commander.serial_device_name];
+                [device_name setTextColor:[NSColor blackColor]];
+                close(fsercmd);
+            }
         }
     }
 

@@ -16,6 +16,8 @@
 @property (assign) float volume;
 @property (assign) int commandCount;
 @property (assign) int command_length;
+@property (assign) int fsercmd;
+
 @property (assign) NSString *command_readable;
 @property (assign) NSString *serial_device_name;
 
