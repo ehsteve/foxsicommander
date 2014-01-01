@@ -1,5 +1,5 @@
 //
-//  main.m
+//  FOXSI_AppDelegate.h
 //  FOXSI Commander
 //
 //  Created by Steven Christe on 12/30/13.
@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-int main(int argc, const char * argv[])
-{
-    return NSApplicationMain(argc, argv);
-}
+@interface FOXSI_AppDelegate : NSObject <NSApplicationDelegate>
+
+@property (assign) IBOutlet NSWindow *window;
+
+@end

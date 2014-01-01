@@ -1,49 +1,58 @@
 //
-//  FOXSI_CommanderAppDelegate.m
+//  FOXSI_WindowController.m
 //  FOXSI Commander
 //
-//  Created by Steven Christe on 3/23/12.
-//  Copyright 2012 NASA GSFC. All rights reserved.
+//  Created by Steven Christe on 12/30/13.
+//  Copyright (c) 2013 ehSwiss Studios. All rights reserved.
 //
 
-#import "FOXSI_CommanderAppDelegate.h"
-#import "Commander.h"
+#import "FOXSI_WindowController.h"
+#import "FOXSI_Commander.h"
 
-@implementation FOXSI_CommanderAppDelegate
+@interface FOXSI_WindowController ()
+@property (strong, nonatomic) FOXSI_Commander *commander;
+@end
 
-@synthesize window;
+@implementation FOXSI_WindowController
+
+@synthesize device_name;
 @synthesize voltage_input;
-@synthesize command_history_display;
 @synthesize stripDisable_detector_chooser;
 @synthesize thresholdSet_detector_chooser;
 @synthesize strip_chooser;
-@synthesize threshold_chooser;
 @synthesize strip_stepper;
 @synthesize threshold_stepper;
+@synthesize threshold_chooser;
 @synthesize send_button;
 @synthesize system_arm_button;
 @synthesize testmode_chooser;
 @synthesize asic_chooser;
-@synthesize device_name;
+@synthesize command_history_display;
 
-
-@synthesize commander = _commander;
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (id)initWithWindow:(NSWindow *)window
 {
-    // Insert code here to initialize your application
-    Commander *aCommander = [[Commander alloc] init];
-    [self setCommander:aCommander];
-    
+    self = [super initWithWindow:window];
+    if (self) {
+        self.commander = [[FOXSI_Commander alloc] init];
+    }
+    return self;
+}
+
+- (void)windowDidLoad
+{
+    [super windowDidLoad];
+
     //now search for the correct device file
     //tty.USA19Hfa13,1,2,3
-    [device_name setStringValue:@"/dev/tty.KeySerial"];
-    [device_name setTextColor:[NSColor redColor]];
+    //[device_name setStringValue:@"/dev/tty.KeySerial"];
+    //[device_name setTextColor:[NSColor redColor]];
+    
+    [self.command_history_display setString:@"test"];
     
     NSDirectoryEnumerator *itr =
     [[NSFileManager defaultManager] enumeratorAtURL:[NSURL fileURLWithPath:@"/dev/"]
                          includingPropertiesForKeys:nil
-                                options:(NSDirectoryEnumerationSkipsHiddenFiles | NSDirectoryEnumerationSkipsPackageDescendants)
+                                            options:(NSDirectoryEnumerationSkipsHiddenFiles | NSDirectoryEnumerationSkipsPackageDescendants)
                                        errorHandler:nil];
     for (NSURL *url in itr)
     {
@@ -59,72 +68,34 @@
                 NSLog(@"found it! %@", [url path]);
                 self.commander.serial_device_name = [url path];
                 NSLog(@"%@",self.commander.serial_device_name);
-                [device_name setStringValue:self.commander.serial_device_name];
-                [device_name setTextColor:[NSColor blackColor]];
+                [self.device_name setStringValue:self.commander.serial_device_name];
+                [self.device_name setTextColor:[NSColor blackColor]];
                 close(fsercmd);
             }
         }
     }
-
 }
 
-
-//- (IBAction)open_device:(id)sender {
-//    // Create the File Open Dialog class.
-//    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
-//    
-//    [openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/Systems/"]];
-//    //[openDlg setDirectoryURL:[NSURL URLWithString:@"file://localhost/System/Library/CoreServices/prndrv"]];
-//    
-//    // Enable the selection of files in the dialog.
-//    [openDlg setCanChooseFiles:YES];
-//    
-//    // Enable the selection of directories in the dialog.
-//    [openDlg setCanChooseDirectories:NO];
-//    
-//    // Disable choosing multiple files
-//    [openDlg setAllowsMultipleSelection:NO];
-//    
-//    // set start directory to
-//
-//    // Display the dialog.  If the OK button was pressed,
-//    // process the files.
-//    
-//    [openDlg beginWithCompletionHandler:^(NSInteger result){
-//        if (result == NSFileHandlingPanelOKButton) {
-//            NSURL* theFile = [[openDlg URLs] objectAtIndex:0];
-//                        
-//            NSURL* fileName = [theFile objectAtIndex:0];
-//            self.commander.serial_device_name = [fileName path];
-//            [device_name setStringValue:[fileName path]];
-//            // Open  the document.
-//            
-//        }
-//    }];
-// }
-
 - (IBAction)set_device_name:(id)sender {
-    
-    NSURL *theURL = [NSURL fileURLWithPath:[device_name stringValue] isDirectory:NO];
+    NSURL *theURL = [NSURL fileURLWithPath:[self.device_name stringValue] isDirectory:NO];
     NSError *err;
     
     if ([theURL checkResourceIsReachableAndReturnError:&err] == NO){
         [self update_text_display:@"File device not found!\n"];
-        [device_name setTextColor:[NSColor redColor]];
+        [self.device_name setTextColor:[NSColor redColor]];
         NSLog(@"error");
     } else {
         [self update_text_display:@"File device set.\n"];
-        [device_name setTextColor:[NSColor blackColor]];
-        self.commander.serial_device_name = [device_name stringValue];
-        
+        [self.device_name setTextColor:[NSColor blackColor]];
+        self.commander.serial_device_name = [self.device_name stringValue];
     }
 }
 
 - (IBAction)voltage_toX_push:(id)sender {
-    int newVoltage = [voltage_input intValue];
+    int newVoltage = [self.voltage_input intValue];
     
     [self.commander create_cmd_hv:newVoltage];
-    [self update_command_display:nil];        
+    [self update_command_display:nil];
 }
 
 - (IBAction)voltage_to0_push:(id)sender {
@@ -139,27 +110,28 @@
 
 - (IBAction)system_arm:(id)sender{
     if (self.system_arm_button.selectedSegment == 0){
-        self.send_button.enabled = NO;        
+        self.send_button.enabled = NO;
     }
     if (self.system_arm_button.selectedSegment == 1) {
-        self.send_button.enabled = YES;        
+        self.send_button.enabled = YES;
     }
 }
 
-- (IBAction)send_command:(id)sender {
+- (IBAction)send_button:(id)sender {
     NSString *command_history_buffer;
     NSRange myrange;
     NSString *command_string_line = [NSString stringWithFormat:@" Sent\n"];
     
-    command_history_buffer = [command_history_display string];
+    command_history_buffer = [self.command_history_display string];
     command_history_buffer = [[command_history_buffer substringToIndex:[command_history_buffer length]-1] stringByAppendingString:command_string_line];
     
     // replace the text with new info
-    [command_history_display setString:command_history_buffer];
-    
+    [self.command_history_display setString:command_history_buffer];
+
     // scroll the text down
-    myrange.length = [command_history_buffer length];
-    [command_history_display scrollRangeToVisible:myrange];
+    myrange.location = [command_history_buffer length];
+    myrange.length = 10;
+    [self.command_history_display scrollRangeToVisible:myrange];
     
     if (self.testmode_chooser.selectedSegment == 1) {
         [self.commander send_command:1];
@@ -217,25 +189,10 @@
 }
 
 - (void) update_command_display:(id)sender{
-    
-    NSRange myrange;
-    NSString *command_history_buffer;
-    
     for (int i = 0; i < self.commander.command_length; i++) {
-    
         NSString *command_string_line = [NSString stringWithFormat:@"[%02i] %@ (%02x %02x %02x %02x)\n", i + self.commander.commandCount - self.commander.command_length + 1, self.commander.command_readable, [self.commander get_command:0+4*i], [self.commander get_command:1+4*i], [self.commander get_command:2+4*i], [self.commander get_command:3+4*i]];
         
         [self update_text_display: command_string_line];
-        
-        //command_history_buffer = [command_history_display string];
-        //command_history_buffer = [command_history_buffer stringByAppendingString:command_string_line];
-        
-        // replace the text with new info
-        //[command_history_display setString:command_history_buffer];
-        
-        // scroll the text down
-        //myrange.length = [command_history_buffer length];
-        //[command_history_display scrollRangeToVisible:myrange];
     }
 }
 
@@ -244,18 +201,17 @@
     NSRange myrange;
     NSString *text_buffer;
     NSLog(@"%@",text_to_display);
-        
-    text_buffer = [command_history_display string];
+    
+    text_buffer = [self.command_history_display string];
     text_buffer = [text_buffer stringByAppendingString: text_to_display];
     
     // replace the text with new info
-    [command_history_display setString:text_buffer];
+    [self.command_history_display setString:text_buffer];
     
     // scroll the text down
-    myrange.length = [text_buffer length];
-    [command_history_display scrollRangeToVisible:myrange];
-
+    myrange.length = 10;
+    myrange.location = [text_buffer length];
+    [self.command_history_display scrollRangeToVisible:myrange];
 }
-
 
 @end

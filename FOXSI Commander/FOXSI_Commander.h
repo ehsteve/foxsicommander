@@ -1,16 +1,14 @@
 //
-//  Commander.h
+//  FOXSI_Commander.h
 //  FOXSI Commander
 //
-//  Created by Steven Christe on 3/23/12.
-//  Copyright 2012 NASA GSFC. All rights reserved.
-//  
+//  Created by Steven Christe on 12/30/13.
+//  Copyright (c) 2013 ehSwiss Studios. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 
-@interface Commander : NSObject {
-
-}
+@interface FOXSI_Commander : NSObject
 
 //@property (assign) unsigned char *cmd;
 @property (assign) float volume;
@@ -23,9 +21,9 @@
 
 -(void)create_cmd_hv:(int) hvvalue;
 -(void)create_cmd_attenuator:(bool) state;
--(void)create_cmd_setthreshold:(NSInteger) detector_number: (NSInteger) asic: (int) threshhold;
--(void)create_cmd_stripoff:(NSInteger) detector_number: (int) strip_number;
--(void)create_cmd_clock:(long long) clock_lo: (long long) clock_hi;
+-(void)create_cmd_setthreshold:(NSInteger)detector_number :(NSInteger)asic :(int)threshhold;
+-(void)create_cmd_stripoff:(NSInteger)detector_number :(int)strip_number;
+-(void)create_cmd_clock:(long long) clock_lo :(long long)clock_hi;
 -(void)send_command:(bool)testmode;
 -(int)get_command:(int)index;
 

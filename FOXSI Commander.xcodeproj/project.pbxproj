@@ -7,114 +7,159 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8628BDC11623A1C600967BAC /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8628BDC01623A1C600967BAC /* icon.iconset */; };
-		8628BDC51623A28400967BAC /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8628BDC41623A28400967BAC /* icon.icns */; };
-		865670F815DB104A004EC736 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 865670F715DB104A004EC736 /* TODO.txt */; };
-		866C833B163A3E5E006BACDE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866C8339163A3E5E006BACDE /* MainMenu.xib */; };
-		86BCE290151CAEF70066B9B5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BCE28F151CAEF70066B9B5 /* Cocoa.framework */; };
-		86BCE29A151CAEF70066B9B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE298151CAEF70066B9B5 /* InfoPlist.strings */; };
-		86BCE29C151CAEF70066B9B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE29B151CAEF70066B9B5 /* main.m */; };
-		86BCE2A0151CAEF70066B9B5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 86BCE29E151CAEF70066B9B5 /* Credits.rtf */; };
-		86BCE2A3151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */; };
-		86BCE2AE151CB61B0066B9B5 /* Commander.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BCE2AD151CB61B0066B9B5 /* Commander.m */; };
-		86CC1C4715DB18E7007BD196 /* NOTES.txt in Resources */ = {isa = PBXBuildFile; fileRef = 86CC1C4615DB18E7007BD196 /* NOTES.txt */; };
+		86FC0BF818713BC300F18C89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86FC0BF718713BC300F18C89 /* Cocoa.framework */; };
+		86FC0C0218713BC300F18C89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86FC0C0018713BC300F18C89 /* InfoPlist.strings */; };
+		86FC0C0418713BC300F18C89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC0C0318713BC300F18C89 /* main.m */; };
+		86FC0C0818713BC300F18C89 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 86FC0C0618713BC300F18C89 /* Credits.rtf */; };
+		86FC0C0B18713BC300F18C89 /* FOXSI_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC0C0A18713BC300F18C89 /* FOXSI_AppDelegate.m */; };
+		86FC0C0E18713BC300F18C89 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC0C0C18713BC300F18C89 /* MainMenu.xib */; };
+		86FC0C1018713BC300F18C89 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FC0C0F18713BC300F18C89 /* Images.xcassets */; };
+		86FC0C1718713BC300F18C89 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86FC0C1618713BC300F18C89 /* XCTest.framework */; };
+		86FC0C1818713BC300F18C89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86FC0BF718713BC300F18C89 /* Cocoa.framework */; };
+		86FC0C2018713BC300F18C89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86FC0C1E18713BC300F18C89 /* InfoPlist.strings */; };
+		86FC0C2218713BC300F18C89 /* FOXSI_CommanderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC0C2118713BC300F18C89 /* FOXSI_CommanderTests.m */; };
+		86FC0C2D1871412000F18C89 /* FOXSI_Commander.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC0C2C1871412000F18C89 /* FOXSI_Commander.m */; };
+		86FC0C301871C5EB00F18C89 /* FOXSI_WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC0C2F1871C5EB00F18C89 /* FOXSI_WindowController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		86FC0C1918713BC300F18C89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86FC0BEC18713BC300F18C89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86FC0BF318713BC300F18C89;
+			remoteInfo = "FOXSI Commander";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		8628BDC01623A1C600967BAC /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
-		8628BDC41623A28400967BAC /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
-		865670F715DB104A004EC736 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
-		866C833A163A3E5E006BACDE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		86BCE28B151CAEF60066B9B5 /* FOXSI Commander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FOXSI Commander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		86BCE28F151CAEF70066B9B5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		86BCE292151CAEF70066B9B5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		86BCE293151CAEF70066B9B5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		86BCE294151CAEF70066B9B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		86BCE297151CAEF70066B9B5 /* FOXSI Commander-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FOXSI Commander-Info.plist"; sourceTree = "<group>"; };
-		86BCE299151CAEF70066B9B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		86BCE29B151CAEF70066B9B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		86BCE29D151CAEF70066B9B5 /* FOXSI Commander-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FOXSI Commander-Prefix.pch"; sourceTree = "<group>"; };
-		86BCE29F151CAEF70066B9B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		86BCE2A1151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FOXSI_CommanderAppDelegate.h; sourceTree = "<group>"; };
-		86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FOXSI_CommanderAppDelegate.m; sourceTree = "<group>"; };
-		86BCE2AC151CB61B0066B9B5 /* Commander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commander.h; sourceTree = "<group>"; };
-		86BCE2AD151CB61B0066B9B5 /* Commander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commander.m; sourceTree = "<group>"; };
-		86CC1C4615DB18E7007BD196 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = "<group>"; };
+		86FC0BF418713BC300F18C89 /* FOXSI Commander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FOXSI Commander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86FC0BF718713BC300F18C89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		86FC0BFA18713BC300F18C89 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		86FC0BFB18713BC300F18C89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		86FC0BFC18713BC300F18C89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		86FC0BFF18713BC300F18C89 /* FOXSI Commander-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FOXSI Commander-Info.plist"; sourceTree = "<group>"; };
+		86FC0C0118713BC300F18C89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86FC0C0318713BC300F18C89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		86FC0C0518713BC300F18C89 /* FOXSI Commander-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FOXSI Commander-Prefix.pch"; sourceTree = "<group>"; };
+		86FC0C0718713BC300F18C89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		86FC0C0918713BC300F18C89 /* FOXSI_AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FOXSI_AppDelegate.h; sourceTree = "<group>"; };
+		86FC0C0A18713BC300F18C89 /* FOXSI_AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FOXSI_AppDelegate.m; sourceTree = "<group>"; };
+		86FC0C0D18713BC300F18C89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		86FC0C0F18713BC300F18C89 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		86FC0C1518713BC300F18C89 /* FOXSI CommanderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FOXSI CommanderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86FC0C1618713BC300F18C89 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		86FC0C1D18713BC300F18C89 /* FOXSI CommanderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FOXSI CommanderTests-Info.plist"; sourceTree = "<group>"; };
+		86FC0C1F18713BC300F18C89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86FC0C2118713BC300F18C89 /* FOXSI_CommanderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FOXSI_CommanderTests.m; sourceTree = "<group>"; };
+		86FC0C2B1871412000F18C89 /* FOXSI_Commander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOXSI_Commander.h; sourceTree = "<group>"; };
+		86FC0C2C1871412000F18C89 /* FOXSI_Commander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOXSI_Commander.m; sourceTree = "<group>"; };
+		86FC0C2E1871C5EB00F18C89 /* FOXSI_WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FOXSI_WindowController.h; sourceTree = "<group>"; };
+		86FC0C2F1871C5EB00F18C89 /* FOXSI_WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FOXSI_WindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		86BCE288151CAEF60066B9B5 /* Frameworks */ = {
+		86FC0BF118713BC300F18C89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BCE290151CAEF70066B9B5 /* Cocoa.framework in Frameworks */,
+				86FC0BF818713BC300F18C89 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86FC0C1218713BC300F18C89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86FC0C1818713BC300F18C89 /* Cocoa.framework in Frameworks */,
+				86FC0C1718713BC300F18C89 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		86BCE280151CAEF60066B9B5 = {
+		86FC0BEB18713BC300F18C89 = {
 			isa = PBXGroup;
 			children = (
-				86BCE295151CAEF70066B9B5 /* FOXSI Commander */,
-				86BCE28E151CAEF70066B9B5 /* Frameworks */,
-				86BCE28C151CAEF60066B9B5 /* Products */,
+				86FC0BFD18713BC300F18C89 /* FOXSI Commander */,
+				86FC0C1B18713BC300F18C89 /* FOXSI CommanderTests */,
+				86FC0BF618713BC300F18C89 /* Frameworks */,
+				86FC0BF518713BC300F18C89 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		86BCE28C151CAEF60066B9B5 /* Products */ = {
+		86FC0BF518713BC300F18C89 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				86BCE28B151CAEF60066B9B5 /* FOXSI Commander.app */,
+				86FC0BF418713BC300F18C89 /* FOXSI Commander.app */,
+				86FC0C1518713BC300F18C89 /* FOXSI CommanderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		86BCE28E151CAEF70066B9B5 /* Frameworks */ = {
+		86FC0BF618713BC300F18C89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				86BCE28F151CAEF70066B9B5 /* Cocoa.framework */,
-				86BCE291151CAEF70066B9B5 /* Other Frameworks */,
+				86FC0BF718713BC300F18C89 /* Cocoa.framework */,
+				86FC0C1618713BC300F18C89 /* XCTest.framework */,
+				86FC0BF918713BC300F18C89 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		86BCE291151CAEF70066B9B5 /* Other Frameworks */ = {
+		86FC0BF918713BC300F18C89 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				86BCE292151CAEF70066B9B5 /* AppKit.framework */,
-				86BCE293151CAEF70066B9B5 /* CoreData.framework */,
-				86BCE294151CAEF70066B9B5 /* Foundation.framework */,
+				86FC0BFA18713BC300F18C89 /* AppKit.framework */,
+				86FC0BFB18713BC300F18C89 /* CoreData.framework */,
+				86FC0BFC18713BC300F18C89 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		86BCE295151CAEF70066B9B5 /* FOXSI Commander */ = {
+		86FC0BFD18713BC300F18C89 /* FOXSI Commander */ = {
 			isa = PBXGroup;
 			children = (
-				86BCE2A1151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.h */,
-				86BCE2A2151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m */,
-				865670F715DB104A004EC736 /* TODO.txt */,
-				86BCE2AC151CB61B0066B9B5 /* Commander.h */,
-				86BCE2AD151CB61B0066B9B5 /* Commander.m */,
-				86CC1C4615DB18E7007BD196 /* NOTES.txt */,
-				866C8339163A3E5E006BACDE /* MainMenu.xib */,
-				86BCE296151CAEF70066B9B5 /* Supporting Files */,
+				86FC0C0918713BC300F18C89 /* FOXSI_AppDelegate.h */,
+				86FC0C0A18713BC300F18C89 /* FOXSI_AppDelegate.m */,
+				86FC0C0C18713BC300F18C89 /* MainMenu.xib */,
+				86FC0C2B1871412000F18C89 /* FOXSI_Commander.h */,
+				86FC0C2C1871412000F18C89 /* FOXSI_Commander.m */,
+				86FC0C2E1871C5EB00F18C89 /* FOXSI_WindowController.h */,
+				86FC0C2F1871C5EB00F18C89 /* FOXSI_WindowController.m */,
+				86FC0C0F18713BC300F18C89 /* Images.xcassets */,
+				86FC0BFE18713BC300F18C89 /* Supporting Files */,
 			);
 			path = "FOXSI Commander";
 			sourceTree = "<group>";
 		};
-		86BCE296151CAEF70066B9B5 /* Supporting Files */ = {
+		86FC0BFE18713BC300F18C89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8628BDC41623A28400967BAC /* icon.icns */,
-				8628BDC01623A1C600967BAC /* icon.iconset */,
-				86BCE297151CAEF70066B9B5 /* FOXSI Commander-Info.plist */,
-				86BCE298151CAEF70066B9B5 /* InfoPlist.strings */,
-				86BCE29B151CAEF70066B9B5 /* main.m */,
-				86BCE29D151CAEF70066B9B5 /* FOXSI Commander-Prefix.pch */,
-				86BCE29E151CAEF70066B9B5 /* Credits.rtf */,
+				86FC0BFF18713BC300F18C89 /* FOXSI Commander-Info.plist */,
+				86FC0C0018713BC300F18C89 /* InfoPlist.strings */,
+				86FC0C0318713BC300F18C89 /* main.m */,
+				86FC0C0518713BC300F18C89 /* FOXSI Commander-Prefix.pch */,
+				86FC0C0618713BC300F18C89 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86FC0C1B18713BC300F18C89 /* FOXSI CommanderTests */ = {
+			isa = PBXGroup;
+			children = (
+				86FC0C2118713BC300F18C89 /* FOXSI_CommanderTests.m */,
+				86FC0C1C18713BC300F18C89 /* Supporting Files */,
+			);
+			path = "FOXSI CommanderTests";
+			sourceTree = "<group>";
+		};
+		86FC0C1C18713BC300F18C89 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				86FC0C1D18713BC300F18C89 /* FOXSI CommanderTests-Info.plist */,
+				86FC0C1E18713BC300F18C89 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -122,13 +167,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		86BCE28A151CAEF60066B9B5 /* FOXSI Commander */ = {
+		86FC0BF318713BC300F18C89 /* FOXSI Commander */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 86BCE2A9151CAEF70066B9B5 /* Build configuration list for PBXNativeTarget "FOXSI Commander" */;
+			buildConfigurationList = 86FC0C2518713BC300F18C89 /* Build configuration list for PBXNativeTarget "FOXSI Commander" */;
 			buildPhases = (
-				86BCE287151CAEF60066B9B5 /* Sources */,
-				86BCE288151CAEF60066B9B5 /* Frameworks */,
-				86BCE289151CAEF60066B9B5 /* Resources */,
+				86FC0BF018713BC300F18C89 /* Sources */,
+				86FC0BF118713BC300F18C89 /* Frameworks */,
+				86FC0BF218713BC300F18C89 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -136,98 +181,164 @@
 			);
 			name = "FOXSI Commander";
 			productName = "FOXSI Commander";
-			productReference = 86BCE28B151CAEF60066B9B5 /* FOXSI Commander.app */;
+			productReference = 86FC0BF418713BC300F18C89 /* FOXSI Commander.app */;
 			productType = "com.apple.product-type.application";
+		};
+		86FC0C1418713BC300F18C89 /* FOXSI CommanderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86FC0C2818713BC300F18C89 /* Build configuration list for PBXNativeTarget "FOXSI CommanderTests" */;
+			buildPhases = (
+				86FC0C1118713BC300F18C89 /* Sources */,
+				86FC0C1218713BC300F18C89 /* Frameworks */,
+				86FC0C1318713BC300F18C89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				86FC0C1A18713BC300F18C89 /* PBXTargetDependency */,
+			);
+			name = "FOXSI CommanderTests";
+			productName = "FOXSI CommanderTests";
+			productReference = 86FC0C1518713BC300F18C89 /* FOXSI CommanderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		86BCE282151CAEF60066B9B5 /* Project object */ = {
+		86FC0BEC18713BC300F18C89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
-				ORGANIZATIONNAME = "NASA GSFC";
+				CLASSPREFIX = FOXSI_;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "ehSwiss Studios";
+				TargetAttributes = {
+					86FC0C1418713BC300F18C89 = {
+						TestTargetID = 86FC0BF318713BC300F18C89;
+					};
+				};
 			};
-			buildConfigurationList = 86BCE285151CAEF60066B9B5 /* Build configuration list for PBXProject "FOXSI Commander" */;
+			buildConfigurationList = 86FC0BEF18713BC300F18C89 /* Build configuration list for PBXProject "FOXSI Commander" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = 86BCE280151CAEF60066B9B5;
-			productRefGroup = 86BCE28C151CAEF60066B9B5 /* Products */;
+			mainGroup = 86FC0BEB18713BC300F18C89;
+			productRefGroup = 86FC0BF518713BC300F18C89 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				86BCE28A151CAEF60066B9B5 /* FOXSI Commander */,
+				86FC0BF318713BC300F18C89 /* FOXSI Commander */,
+				86FC0C1418713BC300F18C89 /* FOXSI CommanderTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		86BCE289151CAEF60066B9B5 /* Resources */ = {
+		86FC0BF218713BC300F18C89 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BCE29A151CAEF70066B9B5 /* InfoPlist.strings in Resources */,
-				86BCE2A0151CAEF70066B9B5 /* Credits.rtf in Resources */,
-				865670F815DB104A004EC736 /* TODO.txt in Resources */,
-				86CC1C4715DB18E7007BD196 /* NOTES.txt in Resources */,
-				8628BDC11623A1C600967BAC /* icon.iconset in Resources */,
-				8628BDC51623A28400967BAC /* icon.icns in Resources */,
-				866C833B163A3E5E006BACDE /* MainMenu.xib in Resources */,
+				86FC0C0218713BC300F18C89 /* InfoPlist.strings in Resources */,
+				86FC0C1018713BC300F18C89 /* Images.xcassets in Resources */,
+				86FC0C0818713BC300F18C89 /* Credits.rtf in Resources */,
+				86FC0C0E18713BC300F18C89 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86FC0C1318713BC300F18C89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86FC0C2018713BC300F18C89 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		86BCE287151CAEF60066B9B5 /* Sources */ = {
+		86FC0BF018713BC300F18C89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BCE29C151CAEF70066B9B5 /* main.m in Sources */,
-				86BCE2A3151CAEF70066B9B5 /* FOXSI_CommanderAppDelegate.m in Sources */,
-				86BCE2AE151CB61B0066B9B5 /* Commander.m in Sources */,
+				86FC0C2D1871412000F18C89 /* FOXSI_Commander.m in Sources */,
+				86FC0C0B18713BC300F18C89 /* FOXSI_AppDelegate.m in Sources */,
+				86FC0C0418713BC300F18C89 /* main.m in Sources */,
+				86FC0C301871C5EB00F18C89 /* FOXSI_WindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86FC0C1118713BC300F18C89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86FC0C2218713BC300F18C89 /* FOXSI_CommanderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		866C8339163A3E5E006BACDE /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				866C833A163A3E5E006BACDE /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		86FC0C1A18713BC300F18C89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86FC0BF318713BC300F18C89 /* FOXSI Commander */;
+			targetProxy = 86FC0C1918713BC300F18C89 /* PBXContainerItemProxy */;
 		};
-		86BCE298151CAEF70066B9B5 /* InfoPlist.strings */ = {
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		86FC0C0018713BC300F18C89 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				86BCE299151CAEF70066B9B5 /* en */,
+				86FC0C0118713BC300F18C89 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		86BCE29E151CAEF70066B9B5 /* Credits.rtf */ = {
+		86FC0C0618713BC300F18C89 /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				86BCE29F151CAEF70066B9B5 /* en */,
+				86FC0C0718713BC300F18C89 /* en */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		86FC0C0C18713BC300F18C89 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86FC0C0D18713BC300F18C89 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		86FC0C1E18713BC300F18C89 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86FC0C1F18713BC300F18C89 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		86BCE2A7151CAEF70066B9B5 /* Debug */ = {
+		86FC0C2318713BC300F18C89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -238,39 +349,53 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		86BCE2A8151CAEF70066B9B5 /* Release */ = {
+		86FC0C2418713BC300F18C89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		86BCE2AA151CAEF70066B9B5 /* Debug */ = {
+		86FC0C2618713BC300F18C89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOXSI Commander/FOXSI Commander-Prefix.pch";
@@ -280,40 +405,88 @@
 			};
 			name = Debug;
 		};
-		86BCE2AB151CAEF70066B9B5 /* Release */ = {
+		86FC0C2718713BC300F18C89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FOXSI Commander/FOXSI Commander-Prefix.pch";
 				INFOPLIST_FILE = "FOXSI Commander/FOXSI Commander-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		86FC0C2918713BC300F18C89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FOXSI Commander.app/Contents/MacOS/FOXSI Commander";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FOXSI Commander/FOXSI Commander-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "FOXSI CommanderTests/FOXSI CommanderTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		86FC0C2A18713BC300F18C89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FOXSI Commander.app/Contents/MacOS/FOXSI Commander";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FOXSI Commander/FOXSI Commander-Prefix.pch";
+				INFOPLIST_FILE = "FOXSI CommanderTests/FOXSI CommanderTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		86BCE285151CAEF60066B9B5 /* Build configuration list for PBXProject "FOXSI Commander" */ = {
+		86FC0BEF18713BC300F18C89 /* Build configuration list for PBXProject "FOXSI Commander" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				86BCE2A7151CAEF70066B9B5 /* Debug */,
-				86BCE2A8151CAEF70066B9B5 /* Release */,
+				86FC0C2318713BC300F18C89 /* Debug */,
+				86FC0C2418713BC300F18C89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		86BCE2A9151CAEF70066B9B5 /* Build configuration list for PBXNativeTarget "FOXSI Commander" */ = {
+		86FC0C2518713BC300F18C89 /* Build configuration list for PBXNativeTarget "FOXSI Commander" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				86BCE2AA151CAEF70066B9B5 /* Debug */,
-				86BCE2AB151CAEF70066B9B5 /* Release */,
+				86FC0C2618713BC300F18C89 /* Debug */,
+				86FC0C2718713BC300F18C89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		86FC0C2818713BC300F18C89 /* Build configuration list for PBXNativeTarget "FOXSI CommanderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86FC0C2918713BC300F18C89 /* Debug */,
+				86FC0C2A18713BC300F18C89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 86BCE282151CAEF60066B9B5 /* Project object */;
+	rootObject = 86FC0BEC18713BC300F18C89 /* Project object */;
 }

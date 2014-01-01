@@ -1,29 +1,28 @@
 //
-//  Commander.m
+//  FOXSI_Commander.m
 //  FOXSI Commander
 //
-//  Created by Steven Christe on 3/23/12.
-//  Copyright 2012 NASA GSFC. All rights reserved.
+//  Created by Steven Christe on 12/30/13.
+//  Copyright (c) 2013 ehSwiss Studios. All rights reserved.
 //
 
-#import "Commander.h"
+#import "FOXSI_Commander.h"
+
 #include <sys/stat.h>
 #include <termios.h>
+#include <sys/ioctl.h>
 
 unsigned char cmd[40];
 
-@interface Commander()
-
+@interface FOXSI_Commander()
 
 // define private methods here
--(void)test:(int) hvvalue;
--(int)command_initialize_serial:(bool) testmode;
--(void)init_command_variables;
--(void)close_serial:(bool) testmode;
-
+- (int)command_initialize_serial:(bool) testmode;
+- (void)init_command_variables;
+- (void)close_serial:(bool) testmode;
 @end
 
-@implementation Commander
+@implementation FOXSI_Commander
 
 // store an increasing count of the number of commands sent
 @synthesize commandCount = _commandCount;
@@ -58,13 +57,10 @@ unsigned char cmd[40];
         usleep(500000);
     }
     [self close_serial:0];
-    
     [self init_command_variables];
-
 }
 
 -(void)init_command_variables{
-    
     // now zero out everything
     for (int i = 0; i < self.command_length*4; i++) {
         cmd[i] = 0;
@@ -72,16 +68,12 @@ unsigned char cmd[40];
     self.command_length = 0;
 }
 
--(void)test:(int)hvvalue{
-    //private method
-}
-
 -(int)get_command:(int) index{
     return cmd[index];
 }
 
 -(void)create_cmd_hv:(int) voltage
-{	
+{
     // schriste - output checked with sethv
     
     // create the command
@@ -96,7 +88,7 @@ unsigned char cmd[40];
         cmd[3] = 0x0;
         cmd[3] ^= cmd[0];
         cmd[3] ^= cmd[1];
-        cmd[3] ^= cmd[2]; 
+        cmd[3] ^= cmd[2];
         
         self.command_readable = [NSString stringWithFormat:@"HV to %i", voltage];
         self.commandCount++;
@@ -111,7 +103,7 @@ unsigned char cmd[40];
     // create a command to enable the attenuator
     //
     // schriste - checked with attenuator0 and attenuator1
-
+    
 	cmd[0] = 0xe8;
 	if (state == 0) {
 		cmd[1] = 0x00;
@@ -129,7 +121,7 @@ unsigned char cmd[40];
     self.command_length = 1;
 }
 
--(void)create_cmd_stripoff:(NSInteger) detector_number: (int) strip_number
+-(void)create_cmd_stripoff:(NSInteger) detector_number :(int) strip_number
 {
     // create command to turn a strip off
     
@@ -146,7 +138,7 @@ unsigned char cmd[40];
         cmdvalue = 0x40;
     }
     cmdvalue |= stripvalue;
-
+    
     cmd[0] = 0xc0;
     cmd[1] = 0;
     cmd[1] |= detector_number;
@@ -161,7 +153,7 @@ unsigned char cmd[40];
     self.commandCount++;
 }
 
--(void) create_cmd_setthreshold:(NSInteger) detector_number: (NSInteger) asic: (int) threshhold
+-(void) create_cmd_setthreshold:(NSInteger) detector_number :(NSInteger) asic :(int) threshhold
 {
     int cmdvalue;
     
@@ -175,7 +167,7 @@ unsigned char cmd[40];
     }
     
     cmdvalue |= threshhold;
-
+    
     cmd[0] = 0xc0;
     cmd[1] = 0;
     cmd[1] |= detector_number;
@@ -188,10 +180,9 @@ unsigned char cmd[40];
     self.command_readable = [NSString stringWithFormat:@"Det %ld, asic %ld, threshold to %i", detector_number, asic, threshhold];
     self.command_length = 1;
     self.commandCount++;
-    
 }
 
--(void)create_cmd_clock:(long long) clock_lo: (long long) clock_hi
+-(void)create_cmd_clock:(long long) clock_lo :(long long) clock_hi
 {
     // the following code is from setflockf
     cmd[0] = 0xf8;
@@ -209,7 +200,7 @@ unsigned char cmd[40];
     cmd[7] ^= cmd[4];
     cmd[7] ^= cmd[5];
     cmd[7] ^= cmd[6];
-
+    
     cmd[8] = 0xf8;
     cmd[9] = 0x02;
     cmd[10] = (unsigned char) ( (clock_lo >> 16) & 0xff);
@@ -217,7 +208,7 @@ unsigned char cmd[40];
     cmd[11] ^= cmd[8];
     cmd[11] ^= cmd[9];
     cmd[11] ^= cmd[10];
-
+    
     cmd[12] = 0xf8;
     cmd[13] = 0x03;
     cmd[14] = (unsigned char) ( (clock_lo >> 24) & 0xff);
@@ -225,7 +216,7 @@ unsigned char cmd[40];
     cmd[15] ^= cmd[12];
     cmd[15] ^= cmd[13];
     cmd[15] ^= cmd[14];
-
+    
     cmd[16] = 0xf8;
     cmd[17] = 0x07;
     cmd[18] = 0x0;
@@ -242,7 +233,7 @@ unsigned char cmd[40];
     cmd[23] ^= cmd[20];
     cmd[23] ^= cmd[21];
     cmd[23] ^= cmd[22];
- 
+    
     cmd[24] = 0xf8;
     cmd[25] = 0x05;
     cmd[26] = (unsigned char) ( (clock_hi >> 8) & 0xff);
@@ -250,33 +241,23 @@ unsigned char cmd[40];
     cmd[27] ^= cmd[24];
     cmd[27] ^= cmd[25];
     cmd[27] ^= cmd[26];
-
+    
     self.command_readable = [NSString stringWithFormat:@"Clock to %lli %lli", clock_hi, clock_lo];
     self.command_length = 7;
     self.commandCount+= 7;
 }
-
-//-(void)send_one_command
-//{
-//    int fsercmd;
-//    
-//    fsercmd = [self command_initialize_serial];
-//    if (fsercmd > 0){write(fsercmd, &cmd[0],self.command_length);}
-//    sleep(1);
-//}
-
 
 -(int)command_initialize_serial:(bool)testmode
 {
     // private
     // initialize connection to serial
 	int status;
-    int ttyout;
+    //int ttyout;
     char filename[40];
     struct stat mystat;
-    int devicefile;
+    //int devicefile;
     struct termios sertty;
-
+    
     // filename = "/dev/tty.USA19Hfd14P1.1\0";
     
     strcpy(filename, [self.serial_device_name UTF8String]);
@@ -300,7 +281,7 @@ unsigned char cmd[40];
 		fstat(self.fsercmd,&mystat);
 		if( S_IFCHR & mystat.st_mode )
 		{
-			devicefile = 1;
+			//devicefile = 1;
 			tcgetattr(self.fsercmd,&sertty); /* get serial line properties */
 			sertty.c_iflag = IGNBRK;
 			sertty.c_lflag  &= ~(ICANON | ECHO | ECHOE | ISIG); /* raw input */
@@ -319,7 +300,7 @@ unsigned char cmd[40];
 		}
 		//      fstat(fileno(stdout),&mystat);
 		//      if((S_IFREG & mystat.st_mode) == 0) ttyout = 1;
-		ttyout = isatty(fileno(stdout));
+		//ttyout = isatty(fileno(stdout));
 		return self.fsercmd;
 	}
 }
