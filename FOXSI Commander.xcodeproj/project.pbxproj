@@ -33,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8646BB261873A43C00D60F4B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		86FC0BF418713BC300F18C89 /* FOXSI Commander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FOXSI Commander.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FC0BF718713BC300F18C89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		86FC0BFA18713BC300F18C89 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -137,6 +138,7 @@
 		86FC0BFE18713BC300F18C89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8646BB261873A43C00D60F4B /* README.md */,
 				86FC0BFF18713BC300F18C89 /* FOXSI Commander-Info.plist */,
 				86FC0C0018713BC300F18C89 /* InfoPlist.strings */,
 				86FC0C0318713BC300F18C89 /* main.m */,
@@ -477,6 +479,7 @@
 				86FC0C2718713BC300F18C89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86FC0C2818713BC300F18C89 /* Build configuration list for PBXNativeTarget "FOXSI CommanderTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +488,7 @@
 				86FC0C2A18713BC300F18C89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

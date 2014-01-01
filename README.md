@@ -18,6 +18,10 @@ Usage
 
 Open the executable with the FOXSI logo to get started!
 
+Requirements
+------------
+Compiled using XCode 5.0.2
+
 Getting Help
 ------------
 
