@@ -2,7 +2,9 @@ FOXSI Commander
 ===============
 
 The FOXSI Commander is a GUI tool written in Objective C whose purpose is to form and 
-send a commands to the FOXSI sounding rocket mission.
+send a commands to the FOXSI sounding rocket payload.
+
+![](https://raw.githubusercontent.com/ehsteve/foxsicommander/master/screenshot.png)
 
 Installation
 ------------
@@ -27,7 +29,7 @@ Getting Help
 
 For more information or to ask questions about FOXSI, check out:
 
- * [FOXSI Home page](http://schriste.wordpress.com/foxsi/)
+ * [FOXSI Home page](http://foxsi.ssl.berkeley.edu)
 
 Contributing
 ------------
